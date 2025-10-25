@@ -136,14 +136,14 @@ enum BrandingTypeMessage: Int {
 /// Generated class from Pigeon that represents data sent in messages.
 struct ConfigurationMessage: Hashable {
   var organization: String
-  var applicationId: String
+  var applicationId: Int64
   var applicationSecret: String
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> ConfigurationMessage? {
     let organization = pigeonVar_list[0] as! String
-    let applicationId = pigeonVar_list[1] as! String
+    let applicationId = pigeonVar_list[1] as! Int64
     let applicationSecret = pigeonVar_list[2] as! String
 
     return ConfigurationMessage(
@@ -206,27 +206,27 @@ struct UserMessage: Hashable {
 /// Generated class from Pigeon that represents data sent in messages.
 struct AvatarThemeMessage: Hashable {
   var useDefaultAvatarColors: Bool
-  var placeholderBackgroundColorHex: String? = nil
-  var placeholderTextColorHex: String? = nil
+  var placeholderBackgroundColor: Int64? = nil
+  var placeholderTextColor: Int64? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> AvatarThemeMessage? {
     let useDefaultAvatarColors = pigeonVar_list[0] as! Bool
-    let placeholderBackgroundColorHex: String? = nilOrValue(pigeonVar_list[1])
-    let placeholderTextColorHex: String? = nilOrValue(pigeonVar_list[2])
+    let placeholderBackgroundColor: Int64? = nilOrValue(pigeonVar_list[1])
+    let placeholderTextColor: Int64? = nilOrValue(pigeonVar_list[2])
 
     return AvatarThemeMessage(
       useDefaultAvatarColors: useDefaultAvatarColors,
-      placeholderBackgroundColorHex: placeholderBackgroundColorHex,
-      placeholderTextColorHex: placeholderTextColorHex
+      placeholderBackgroundColor: placeholderBackgroundColor,
+      placeholderTextColor: placeholderTextColor
     )
   }
   func toList() -> [Any?] {
     return [
       useDefaultAvatarColors,
-      placeholderBackgroundColorHex,
-      placeholderTextColorHex,
+      placeholderBackgroundColor,
+      placeholderTextColor,
     ]
   }
   static func == (lhs: AvatarThemeMessage, rhs: AvatarThemeMessage) -> Bool {
@@ -238,48 +238,48 @@ struct AvatarThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct MessageAreaThemeMessage: Hashable {
-  var backgroundColorHex: String? = nil
-  var inputOutlineColorHex: String? = nil
-  var inputFieldTextColorHex: String? = nil
-  var inputFieldTextHintColorHex: String? = nil
-  var messageMenuBackgroundColorHex: String? = nil
-  var messageMenuTextColorHex: String? = nil
-  var messageMenuSummaryTextColorHex: String? = nil
-  var messageMenuIconColorHex: String? = nil
+  var backgroundColor: Int64? = nil
+  var inputOutlineColor: Int64? = nil
+  var inputFieldTextColor: Int64? = nil
+  var inputFieldTextHintColor: Int64? = nil
+  var messageMenuBackgroundColor: Int64? = nil
+  var messageMenuTextColor: Int64? = nil
+  var messageMenuSummaryTextColor: Int64? = nil
+  var messageMenuIconColor: Int64? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> MessageAreaThemeMessage? {
-    let backgroundColorHex: String? = nilOrValue(pigeonVar_list[0])
-    let inputOutlineColorHex: String? = nilOrValue(pigeonVar_list[1])
-    let inputFieldTextColorHex: String? = nilOrValue(pigeonVar_list[2])
-    let inputFieldTextHintColorHex: String? = nilOrValue(pigeonVar_list[3])
-    let messageMenuBackgroundColorHex: String? = nilOrValue(pigeonVar_list[4])
-    let messageMenuTextColorHex: String? = nilOrValue(pigeonVar_list[5])
-    let messageMenuSummaryTextColorHex: String? = nilOrValue(pigeonVar_list[6])
-    let messageMenuIconColorHex: String? = nilOrValue(pigeonVar_list[7])
+    let backgroundColor: Int64? = nilOrValue(pigeonVar_list[0])
+    let inputOutlineColor: Int64? = nilOrValue(pigeonVar_list[1])
+    let inputFieldTextColor: Int64? = nilOrValue(pigeonVar_list[2])
+    let inputFieldTextHintColor: Int64? = nilOrValue(pigeonVar_list[3])
+    let messageMenuBackgroundColor: Int64? = nilOrValue(pigeonVar_list[4])
+    let messageMenuTextColor: Int64? = nilOrValue(pigeonVar_list[5])
+    let messageMenuSummaryTextColor: Int64? = nilOrValue(pigeonVar_list[6])
+    let messageMenuIconColor: Int64? = nilOrValue(pigeonVar_list[7])
 
     return MessageAreaThemeMessage(
-      backgroundColorHex: backgroundColorHex,
-      inputOutlineColorHex: inputOutlineColorHex,
-      inputFieldTextColorHex: inputFieldTextColorHex,
-      inputFieldTextHintColorHex: inputFieldTextHintColorHex,
-      messageMenuBackgroundColorHex: messageMenuBackgroundColorHex,
-      messageMenuTextColorHex: messageMenuTextColorHex,
-      messageMenuSummaryTextColorHex: messageMenuSummaryTextColorHex,
-      messageMenuIconColorHex: messageMenuIconColorHex
+      backgroundColor: backgroundColor,
+      inputOutlineColor: inputOutlineColor,
+      inputFieldTextColor: inputFieldTextColor,
+      inputFieldTextHintColor: inputFieldTextHintColor,
+      messageMenuBackgroundColor: messageMenuBackgroundColor,
+      messageMenuTextColor: messageMenuTextColor,
+      messageMenuSummaryTextColor: messageMenuSummaryTextColor,
+      messageMenuIconColor: messageMenuIconColor
     )
   }
   func toList() -> [Any?] {
     return [
-      backgroundColorHex,
-      inputOutlineColorHex,
-      inputFieldTextColorHex,
-      inputFieldTextHintColorHex,
-      messageMenuBackgroundColorHex,
-      messageMenuTextColorHex,
-      messageMenuSummaryTextColorHex,
-      messageMenuIconColorHex,
+      backgroundColor,
+      inputOutlineColor,
+      inputFieldTextColor,
+      inputFieldTextHintColor,
+      messageMenuBackgroundColor,
+      messageMenuTextColor,
+      messageMenuSummaryTextColor,
+      messageMenuIconColor,
     ]
   }
   static func == (lhs: MessageAreaThemeMessage, rhs: MessageAreaThemeMessage) -> Bool {
@@ -291,40 +291,92 @@ struct MessageAreaThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct ChatAreaThemeMessage: Hashable {
-  var incomingBubbleTextColorHex: String? = nil
-  var outcomingBubbleTextColorHex: String? = nil
-  var incomingBubbleColorHex: String? = nil
-  var outcomingBubbleColorHex: String? = nil
-  var backgroundColorHex: String? = nil
+  var incomingBubbleTextColor: Int64? = nil
+  var outcomingBubbleTextColor: Int64? = nil
+  var incomingBubbleColor: Int64? = nil
+  var outcomingBubbleColor: Int64? = nil
+  var backgroundColor: Int64? = nil
   var brandingType: BrandingTypeMessage
+  var incomingCodeBackgroundColor: Int64? = nil
+  var outcomingCodeBackgroundColor: Int64? = nil
+  var incomingCodeTextColor: Int64? = nil
+  var outcomingCodeTextColor: Int64? = nil
+  var incomingBlockQuoteColor: Int64? = nil
+  var outcomingBlockQuoteColor: Int64? = nil
+  var incomingFileTextColor: Int64? = nil
+  var outcomingFileTextColor: Int64? = nil
+  var authorNameColor: Int64? = nil
+  var systemMessageColor: Int64? = nil
+  var timeTextColor: Int64? = nil
+  var progressViewsColor: Int64? = nil
+  var chatBackgroundColor: Int64? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> ChatAreaThemeMessage? {
-    let incomingBubbleTextColorHex: String? = nilOrValue(pigeonVar_list[0])
-    let outcomingBubbleTextColorHex: String? = nilOrValue(pigeonVar_list[1])
-    let incomingBubbleColorHex: String? = nilOrValue(pigeonVar_list[2])
-    let outcomingBubbleColorHex: String? = nilOrValue(pigeonVar_list[3])
-    let backgroundColorHex: String? = nilOrValue(pigeonVar_list[4])
+    let incomingBubbleTextColor: Int64? = nilOrValue(pigeonVar_list[0])
+    let outcomingBubbleTextColor: Int64? = nilOrValue(pigeonVar_list[1])
+    let incomingBubbleColor: Int64? = nilOrValue(pigeonVar_list[2])
+    let outcomingBubbleColor: Int64? = nilOrValue(pigeonVar_list[3])
+    let backgroundColor: Int64? = nilOrValue(pigeonVar_list[4])
     let brandingType = pigeonVar_list[5] as! BrandingTypeMessage
+    let incomingCodeBackgroundColor: Int64? = nilOrValue(pigeonVar_list[6])
+    let outcomingCodeBackgroundColor: Int64? = nilOrValue(pigeonVar_list[7])
+    let incomingCodeTextColor: Int64? = nilOrValue(pigeonVar_list[8])
+    let outcomingCodeTextColor: Int64? = nilOrValue(pigeonVar_list[9])
+    let incomingBlockQuoteColor: Int64? = nilOrValue(pigeonVar_list[10])
+    let outcomingBlockQuoteColor: Int64? = nilOrValue(pigeonVar_list[11])
+    let incomingFileTextColor: Int64? = nilOrValue(pigeonVar_list[12])
+    let outcomingFileTextColor: Int64? = nilOrValue(pigeonVar_list[13])
+    let authorNameColor: Int64? = nilOrValue(pigeonVar_list[14])
+    let systemMessageColor: Int64? = nilOrValue(pigeonVar_list[15])
+    let timeTextColor: Int64? = nilOrValue(pigeonVar_list[16])
+    let progressViewsColor: Int64? = nilOrValue(pigeonVar_list[17])
+    let chatBackgroundColor: Int64? = nilOrValue(pigeonVar_list[18])
 
     return ChatAreaThemeMessage(
-      incomingBubbleTextColorHex: incomingBubbleTextColorHex,
-      outcomingBubbleTextColorHex: outcomingBubbleTextColorHex,
-      incomingBubbleColorHex: incomingBubbleColorHex,
-      outcomingBubbleColorHex: outcomingBubbleColorHex,
-      backgroundColorHex: backgroundColorHex,
-      brandingType: brandingType
+      incomingBubbleTextColor: incomingBubbleTextColor,
+      outcomingBubbleTextColor: outcomingBubbleTextColor,
+      incomingBubbleColor: incomingBubbleColor,
+      outcomingBubbleColor: outcomingBubbleColor,
+      backgroundColor: backgroundColor,
+      brandingType: brandingType,
+      incomingCodeBackgroundColor: incomingCodeBackgroundColor,
+      outcomingCodeBackgroundColor: outcomingCodeBackgroundColor,
+      incomingCodeTextColor: incomingCodeTextColor,
+      outcomingCodeTextColor: outcomingCodeTextColor,
+      incomingBlockQuoteColor: incomingBlockQuoteColor,
+      outcomingBlockQuoteColor: outcomingBlockQuoteColor,
+      incomingFileTextColor: incomingFileTextColor,
+      outcomingFileTextColor: outcomingFileTextColor,
+      authorNameColor: authorNameColor,
+      systemMessageColor: systemMessageColor,
+      timeTextColor: timeTextColor,
+      progressViewsColor: progressViewsColor,
+      chatBackgroundColor: chatBackgroundColor
     )
   }
   func toList() -> [Any?] {
     return [
-      incomingBubbleTextColorHex,
-      outcomingBubbleTextColorHex,
-      incomingBubbleColorHex,
-      outcomingBubbleColorHex,
-      backgroundColorHex,
+      incomingBubbleTextColor,
+      outcomingBubbleTextColor,
+      incomingBubbleColor,
+      outcomingBubbleColor,
+      backgroundColor,
       brandingType,
+      incomingCodeBackgroundColor,
+      outcomingCodeBackgroundColor,
+      incomingCodeTextColor,
+      outcomingCodeTextColor,
+      incomingBlockQuoteColor,
+      outcomingBlockQuoteColor,
+      incomingFileTextColor,
+      outcomingFileTextColor,
+      authorNameColor,
+      systemMessageColor,
+      timeTextColor,
+      progressViewsColor,
+      chatBackgroundColor,
     ]
   }
   static func == (lhs: ChatAreaThemeMessage, rhs: ChatAreaThemeMessage) -> Bool {
@@ -336,40 +388,40 @@ struct ChatAreaThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct SystemAlertsThemeMessage: Hashable {
-  var dialogsHeaderColorHex: String? = nil
-  var toastsBackgroundColorHex: String? = nil
-  var toastsTextColorHex: String? = nil
-  var welcomeMessageBackgroundColorHex: String? = nil
-  var welcomeMessageTextColorHex: String? = nil
-  var warningDialogsHeaderColorHex: String? = nil
+  var dialogsHeaderColor: Int64? = nil
+  var toastsBackgroundColor: Int64? = nil
+  var toastsTextColor: Int64? = nil
+  var welcomeMessageBackgroundColor: Int64? = nil
+  var welcomeMessageTextColor: Int64? = nil
+  var warningDialogsHeaderColor: Int64? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> SystemAlertsThemeMessage? {
-    let dialogsHeaderColorHex: String? = nilOrValue(pigeonVar_list[0])
-    let toastsBackgroundColorHex: String? = nilOrValue(pigeonVar_list[1])
-    let toastsTextColorHex: String? = nilOrValue(pigeonVar_list[2])
-    let welcomeMessageBackgroundColorHex: String? = nilOrValue(pigeonVar_list[3])
-    let welcomeMessageTextColorHex: String? = nilOrValue(pigeonVar_list[4])
-    let warningDialogsHeaderColorHex: String? = nilOrValue(pigeonVar_list[5])
+    let dialogsHeaderColor: Int64? = nilOrValue(pigeonVar_list[0])
+    let toastsBackgroundColor: Int64? = nilOrValue(pigeonVar_list[1])
+    let toastsTextColor: Int64? = nilOrValue(pigeonVar_list[2])
+    let welcomeMessageBackgroundColor: Int64? = nilOrValue(pigeonVar_list[3])
+    let welcomeMessageTextColor: Int64? = nilOrValue(pigeonVar_list[4])
+    let warningDialogsHeaderColor: Int64? = nilOrValue(pigeonVar_list[5])
 
     return SystemAlertsThemeMessage(
-      dialogsHeaderColorHex: dialogsHeaderColorHex,
-      toastsBackgroundColorHex: toastsBackgroundColorHex,
-      toastsTextColorHex: toastsTextColorHex,
-      welcomeMessageBackgroundColorHex: welcomeMessageBackgroundColorHex,
-      welcomeMessageTextColorHex: welcomeMessageTextColorHex,
-      warningDialogsHeaderColorHex: warningDialogsHeaderColorHex
+      dialogsHeaderColor: dialogsHeaderColor,
+      toastsBackgroundColor: toastsBackgroundColor,
+      toastsTextColor: toastsTextColor,
+      welcomeMessageBackgroundColor: welcomeMessageBackgroundColor,
+      welcomeMessageTextColor: welcomeMessageTextColor,
+      warningDialogsHeaderColor: warningDialogsHeaderColor
     )
   }
   func toList() -> [Any?] {
     return [
-      dialogsHeaderColorHex,
-      toastsBackgroundColorHex,
-      toastsTextColorHex,
-      welcomeMessageBackgroundColorHex,
-      welcomeMessageTextColorHex,
-      warningDialogsHeaderColorHex,
+      dialogsHeaderColor,
+      toastsBackgroundColor,
+      toastsTextColor,
+      welcomeMessageBackgroundColor,
+      welcomeMessageTextColor,
+      warningDialogsHeaderColor,
     ]
   }
   static func == (lhs: SystemAlertsThemeMessage, rhs: SystemAlertsThemeMessage) -> Bool {
@@ -381,36 +433,36 @@ struct SystemAlertsThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct PreChatThemeMessage: Hashable {
-  var inputFieldTextColorHex: String? = nil
-  var inputFieldTextHintColorHex: String? = nil
-  var backgroundColorHex: String? = nil
-  var messageBackgroundColorHex: String? = nil
-  var messageTextColorHex: String? = nil
+  var inputFieldTextColor: Int64? = nil
+  var inputFieldTextHintColor: Int64? = nil
+  var backgroundColor: Int64? = nil
+  var messageBackgroundColor: Int64? = nil
+  var messageTextColor: Int64? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> PreChatThemeMessage? {
-    let inputFieldTextColorHex: String? = nilOrValue(pigeonVar_list[0])
-    let inputFieldTextHintColorHex: String? = nilOrValue(pigeonVar_list[1])
-    let backgroundColorHex: String? = nilOrValue(pigeonVar_list[2])
-    let messageBackgroundColorHex: String? = nilOrValue(pigeonVar_list[3])
-    let messageTextColorHex: String? = nilOrValue(pigeonVar_list[4])
+    let inputFieldTextColor: Int64? = nilOrValue(pigeonVar_list[0])
+    let inputFieldTextHintColor: Int64? = nilOrValue(pigeonVar_list[1])
+    let backgroundColor: Int64? = nilOrValue(pigeonVar_list[2])
+    let messageBackgroundColor: Int64? = nilOrValue(pigeonVar_list[3])
+    let messageTextColor: Int64? = nilOrValue(pigeonVar_list[4])
 
     return PreChatThemeMessage(
-      inputFieldTextColorHex: inputFieldTextColorHex,
-      inputFieldTextHintColorHex: inputFieldTextHintColorHex,
-      backgroundColorHex: backgroundColorHex,
-      messageBackgroundColorHex: messageBackgroundColorHex,
-      messageTextColorHex: messageTextColorHex
+      inputFieldTextColor: inputFieldTextColor,
+      inputFieldTextHintColor: inputFieldTextHintColor,
+      backgroundColor: backgroundColor,
+      messageBackgroundColor: messageBackgroundColor,
+      messageTextColor: messageTextColor
     )
   }
   func toList() -> [Any?] {
     return [
-      inputFieldTextColorHex,
-      inputFieldTextHintColorHex,
-      backgroundColorHex,
-      messageBackgroundColorHex,
-      messageTextColorHex,
+      inputFieldTextColor,
+      inputFieldTextHintColor,
+      backgroundColor,
+      messageBackgroundColor,
+      messageTextColor,
     ]
   }
   static func == (lhs: PreChatThemeMessage, rhs: PreChatThemeMessage) -> Bool {
@@ -422,36 +474,32 @@ struct PreChatThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct ToolbarAreaThemeMessage: Hashable {
-  var backgroundColorHex: String? = nil
-  var statusBarColorHex: String? = nil
-  var outlineColorHex: String? = nil
-  var agentsTextColorHex: String? = nil
-  var avatarTheme: AvatarThemeMessage? = nil
+  var backgroundColor: Int64? = nil
+  var statusBarColor: Int64? = nil
+  var outlineColor: Int64? = nil
+  var agentsTextColor: Int64? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> ToolbarAreaThemeMessage? {
-    let backgroundColorHex: String? = nilOrValue(pigeonVar_list[0])
-    let statusBarColorHex: String? = nilOrValue(pigeonVar_list[1])
-    let outlineColorHex: String? = nilOrValue(pigeonVar_list[2])
-    let agentsTextColorHex: String? = nilOrValue(pigeonVar_list[3])
-    let avatarTheme: AvatarThemeMessage? = nilOrValue(pigeonVar_list[4])
+    let backgroundColor: Int64? = nilOrValue(pigeonVar_list[0])
+    let statusBarColor: Int64? = nilOrValue(pigeonVar_list[1])
+    let outlineColor: Int64? = nilOrValue(pigeonVar_list[2])
+    let agentsTextColor: Int64? = nilOrValue(pigeonVar_list[3])
 
     return ToolbarAreaThemeMessage(
-      backgroundColorHex: backgroundColorHex,
-      statusBarColorHex: statusBarColorHex,
-      outlineColorHex: outlineColorHex,
-      agentsTextColorHex: agentsTextColorHex,
-      avatarTheme: avatarTheme
+      backgroundColor: backgroundColor,
+      statusBarColor: statusBarColor,
+      outlineColor: outlineColor,
+      agentsTextColor: agentsTextColor
     )
   }
   func toList() -> [Any?] {
     return [
-      backgroundColorHex,
-      statusBarColorHex,
-      outlineColorHex,
-      agentsTextColorHex,
-      avatarTheme,
+      backgroundColor,
+      statusBarColor,
+      outlineColor,
+      agentsTextColor,
     ]
   }
   static func == (lhs: ToolbarAreaThemeMessage, rhs: ToolbarAreaThemeMessage) -> Bool {
@@ -463,7 +511,7 @@ struct ToolbarAreaThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct ThemeMessage: Hashable {
-  var primaryColorHex: String? = nil
+  var primaryColor: Int64
   var toolbarAreaTheme: ToolbarAreaThemeMessage? = nil
   var chatAreaTheme: ChatAreaThemeMessage? = nil
   var messageAreaTheme: MessageAreaThemeMessage? = nil
@@ -474,7 +522,7 @@ struct ThemeMessage: Hashable {
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> ThemeMessage? {
-    let primaryColorHex: String? = nilOrValue(pigeonVar_list[0])
+    let primaryColor = pigeonVar_list[0] as! Int64
     let toolbarAreaTheme: ToolbarAreaThemeMessage? = nilOrValue(pigeonVar_list[1])
     let chatAreaTheme: ChatAreaThemeMessage? = nilOrValue(pigeonVar_list[2])
     let messageAreaTheme: MessageAreaThemeMessage? = nilOrValue(pigeonVar_list[3])
@@ -483,7 +531,7 @@ struct ThemeMessage: Hashable {
     let avatarTheme: AvatarThemeMessage? = nilOrValue(pigeonVar_list[6])
 
     return ThemeMessage(
-      primaryColorHex: primaryColorHex,
+      primaryColor: primaryColor,
       toolbarAreaTheme: toolbarAreaTheme,
       chatAreaTheme: chatAreaTheme,
       messageAreaTheme: messageAreaTheme,
@@ -494,7 +542,7 @@ struct ThemeMessage: Hashable {
   }
   func toList() -> [Any?] {
     return [
-      primaryColorHex,
+      primaryColor,
       toolbarAreaTheme,
       chatAreaTheme,
       messageAreaTheme,

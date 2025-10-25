@@ -14,90 +14,100 @@ class FlutterHelpCrunchUtil {
     companion object {
         const val HelpCrunchUserBlocked = "user_blocked"
         const val HelpCrunchCantOpenChat = "cant_open_chat"
-        @ColorInt
-        fun fromHex(hex: String): Int {
-            // Normalize input
-            var clean = hex.trim()
-                .removePrefix("0x")
-                .removePrefix("#")
-
-            // Add full opacity alpha if missing
-            if (clean.length == 6) {
-                clean = "FF$clean"
-            }
-
-            // Convert to Int color
-            return try {
-                clean.toLong(16).toInt()
-            } catch (e: NumberFormatException) {
-                Color.BLACK // fallback color
-            }
-        }
     }
 }
 
 fun HCMessageAreaTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCMessageAreaTheme.Builder {
     val messageArea = theme?.messageAreaTheme ?: return this
 
-    messageArea.backgroundColorHex
-        ?.let { setBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.backgroundColor
+        ?.let { setBackgroundColor(it.toInt()) }
 
-    messageArea.inputOutlineColorHex
-        ?.let { setInputOutlineColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.inputOutlineColor
+        ?.let { setInputOutlineColor(it.toInt()) }
 
-    messageArea.inputFieldTextColorHex
-        ?.let { setInputFieldTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.inputFieldTextColor
+        ?.let { setInputFieldTextColor(it.toInt()) }
 
-    messageArea.inputFieldTextHintColorHex
-        ?.let { setInputFieldTextHintColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.inputFieldTextHintColor
+        ?.let { setInputFieldTextHintColor(it.toInt()) }
 
-    messageArea.messageMenuBackgroundColorHex
-        ?.let { setMessageMenuBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.messageMenuBackgroundColor
+        ?.let { setMessageMenuBackgroundColor(it.toInt()) }
 
-    messageArea.messageMenuTextColorHex
-        ?.let { setMessageMenuTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.messageMenuTextColor
+        ?.let { setMessageMenuTextColor(it.toInt()) }
 
-    messageArea.messageMenuSummaryTextColorHex
-        ?.let { setMessageMenuSummaryTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.messageMenuSummaryTextColor
+        ?.let { setMessageMenuSummaryTextColor(it.toInt()) }
 
-    messageArea.messageMenuIconColorHex
-        ?.let { setMessageMenuIconColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    messageArea.messageMenuIconColor
+        ?.let { setMessageMenuIconColor(it.toInt()) }
 
     return this
 }
 
 fun HCChatAreaTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCChatAreaTheme.Builder {
     val chatArea = theme?.chatAreaTheme ?: return this
+    chatArea.incomingBubbleColor
+        ?.let { setIncomingBubbleColor(it.toInt()) }
 
-    chatArea.incomingBubbleColorHex
-        ?.let { setIncomingBubbleTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    chatArea.outcomingBubbleTextColor
+        ?.let { setOutcomingBubbleTextColor(it.toInt()) }
 
-    chatArea.outcomingBubbleTextColorHex
-        ?.let { setOutcomingBubbleTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    chatArea.incomingBubbleTextColor
+        ?.let { setIncomingBubbleTextColor(it.toInt()) }
 
-    chatArea.incomingBubbleColorHex
-        ?.let { setIncomingBubbleColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    chatArea.outcomingBubbleColor
+        ?.let { setOutcomingBubbleColor(it.toInt()) }
 
-    chatArea.outcomingBubbleColorHex
-        ?.let { setOutcomingBubbleColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    chatArea.backgroundColor
+        ?.let { setBackgroundColor(it.toInt()) }
 
-    chatArea.backgroundColorHex
-        ?.let { setBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    // Code block colors
+    chatArea.incomingCodeBackgroundColor
+        ?.let { setIncomingCodeBackgroundColor(it.toInt()) }
+    chatArea.outcomingCodeBackgroundColor
+        ?.let { setOutcomingCodeBackgroundColor(it.toInt()) }
+    chatArea.incomingCodeTextColor
+        ?.let { setIncomingCodeTextColor(it.toInt()) }
+    chatArea.outcomingCodeTextColor
+        ?.let { setOutcomingCodeTextColor(it.toInt()) }
+
+    // Block quote colors
+    chatArea.incomingBlockQuoteColor
+        ?.let { setIncomingBlockQuoteColor(it.toInt()) }
+    chatArea.outcomingBlockQuoteColor
+        ?.let { setOutcomingBlockQuoteColor(it.toInt()) }
+
+    // 🆕 File & system colors
+    chatArea.incomingFileTextColor
+        ?.let { setIncomingFileTextColor(it.toInt()) }
+    chatArea.outcomingFileTextColor
+        ?.let { setOutcomingFileTextColor(it.toInt()) }
+    chatArea.authorNameColor
+        ?.let { setAuthorNameColor(it.toInt()) }
+    chatArea.systemMessageColor
+        ?.let { setSystemMessageColor(it.toInt()) }
+    chatArea.timeTextColor
+        ?.let { setTimeTextColor(it.toInt()) }
+    chatArea.progressViewsColor
+        ?.let { setProgressViewsColor(it.toInt()) }
+    chatArea.chatBackgroundColor
+        ?.let { setBackgroundColor(it.toInt()) }
 
     // If HCChatAreaTheme.Builder supports branding type
 
     setBrandingType(
         if (theme.chatAreaTheme.brandingType == BrandingTypeMessage.DARK)
-                HCChatAreaTheme.Branding.DARK
+            HCChatAreaTheme.Branding.DARK
         else HCChatAreaTheme.Branding.LIGHT)
 
-    theme.avatarTheme?.let { _ ->
-        setAvatarTheme(
-            HCAvatarTheme.Builder()
-                .applyFromTheme(theme)
-                .build()
-        )
-    }
+    setAvatarTheme(
+        HCAvatarTheme.Builder()
+            .applyFromTheme(theme)
+            .build()
+    )
 
     return this
 }
@@ -107,11 +117,11 @@ fun HCAvatarTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCAvatarTheme.Bu
 
     setUseDefaultAvatarColors(avatarTheme.useDefaultAvatarColors)
 
-    avatarTheme.placeholderBackgroundColorHex
-        ?.let { setPlaceholderBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    avatarTheme.placeholderBackgroundColor
+        ?.let { setPlaceholderBackgroundColor(it.toInt()) }
 
-    avatarTheme.placeholderTextColorHex
-        ?.let { setPlaceholderTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    avatarTheme.placeholderTextColor
+        ?.let { setPlaceholderTextColor(it.toInt()) }
 
     return this
 }
@@ -119,20 +129,20 @@ fun HCAvatarTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCAvatarTheme.Bu
 fun HCPreChatTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCPreChatTheme.Builder {
     val preChatTheme = theme?.preChatTheme ?: return this
 
-    preChatTheme.inputFieldTextColorHex
-        ?.let { setInputFieldTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    preChatTheme.inputFieldTextColor
+        ?.let { setInputFieldTextColor(it.toInt()) }
 
-    preChatTheme.inputFieldTextHintColorHex
-        ?.let { setInputFieldTextHintColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    preChatTheme.inputFieldTextHintColor
+        ?.let { setInputFieldTextHintColor(it.toInt()) }
 
-    preChatTheme.backgroundColorHex
-        ?.let { setBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    preChatTheme.backgroundColor
+        ?.let { setBackgroundColor(it.toInt()) }
 
-    preChatTheme.messageBackgroundColorHex
-        ?.let { setMessageBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    preChatTheme.messageBackgroundColor
+        ?.let { setMessageBackgroundColor(it.toInt()) }
 
-    preChatTheme.messageTextColorHex
-        ?.let { setMessageTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    preChatTheme.messageTextColor
+        ?.let { setMessageTextColor(it.toInt()) }
 
     return this
 }
@@ -140,23 +150,23 @@ fun HCPreChatTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCPreChatTheme.
 fun HCSystemAlertsTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCSystemAlertsTheme.Builder {
     val systemAlertsTheme = theme?.systemAlertsTheme ?: return this
 
-    systemAlertsTheme.dialogsHeaderColorHex
-        ?.let { setDialogsHeaderColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    systemAlertsTheme.dialogsHeaderColor
+        ?.let { setDialogsHeaderColor(it.toInt()) }
 
-    systemAlertsTheme.toastsBackgroundColorHex
-        ?.let { setToastsBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    systemAlertsTheme.toastsBackgroundColor
+        ?.let { setToastsBackgroundColor(it.toInt()) }
 
-    systemAlertsTheme.toastsTextColorHex
-        ?.let { setToastsTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    systemAlertsTheme.toastsTextColor
+        ?.let { setToastsTextColor(it.toInt()) }
 
-    systemAlertsTheme.welcomeMessageBackgroundColorHex
-        ?.let { setWelcomeMessageBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    systemAlertsTheme.welcomeMessageBackgroundColor
+        ?.let { setWelcomeMessageBackgroundColor(it.toInt()) }
 
-    systemAlertsTheme.welcomeMessageTextColorHex
-        ?.let { setWelcomeMessageTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    systemAlertsTheme.welcomeMessageTextColor
+        ?.let { setWelcomeMessageTextColor(it.toInt()) }
 
-    systemAlertsTheme.warningDialogsHeaderColorHex
-        ?.let { setWarningDialogsHeaderColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    systemAlertsTheme.warningDialogsHeaderColor
+        ?.let { setWarningDialogsHeaderColor(it.toInt()) }
 
     return this
 }
@@ -164,26 +174,23 @@ fun HCSystemAlertsTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCSystemAl
 fun HCToolbarAreaTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCToolbarAreaTheme.Builder {
     val toolbarAreaTheme = theme?.toolbarAreaTheme ?: return this
 
-    toolbarAreaTheme.backgroundColorHex
-        ?.let { setBackgroundColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    toolbarAreaTheme.backgroundColor
+        ?.let { setBackgroundColor(it.toInt()) }
 
-    toolbarAreaTheme.statusBarColorHex
-        ?.let { setStatusBarColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    toolbarAreaTheme.statusBarColor
+        ?.let { setStatusBarColor(it.toInt()) }
 
-    toolbarAreaTheme.outlineColorHex
-        ?.let { setOutlineColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    toolbarAreaTheme.outlineColor
+        ?.let { setOutlineColor(it.toInt()) }
 
-    toolbarAreaTheme.agentsTextColorHex
-        ?.let { setAgentsTextColor(FlutterHelpCrunchUtil.fromHex(it)) }
+    toolbarAreaTheme.agentsTextColor
+        ?.let { setAgentsTextColor(it.toInt()) }
 
-    // Nested avatar theme mapping (reuses the existing avatar extension)
-    toolbarAreaTheme.avatarTheme?.let { _ ->
-        setAvatarTheme(
-            HCAvatarTheme.Builder()
-                .applyFromTheme(theme)
-                .build()
-        )
-    }
+    setAvatarTheme(
+        HCAvatarTheme.Builder()
+            .applyFromTheme(theme)
+            .build()
+    )
 
     return this
 }

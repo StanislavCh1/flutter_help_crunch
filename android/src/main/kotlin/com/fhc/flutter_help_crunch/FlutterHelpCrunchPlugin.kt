@@ -23,9 +23,7 @@ import com.helpcrunch.library.core.options.theme.HCTheme
 import com.helpcrunch.library.core.options.theme.HCToolbarAreaTheme
 
 /** FlutterHelpCrunchPlugin */
-class FlutterHelpCrunchPlugin: FlutterPlugin, FlutterHelpCrunchApi, ActivityAware {
-  private var activity: Activity? = null
-
+class FlutterHelpCrunchPlugin: FlutterPlugin, FlutterHelpCrunchApi {
 
   companion object {
     const val TAG = "FlutterHelpCrunchPlugin"
@@ -37,22 +35,6 @@ class FlutterHelpCrunchPlugin: FlutterPlugin, FlutterHelpCrunchApi, ActivityAwar
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
    FlutterHelpCrunchApi.setUp(binding.binaryMessenger, null)
-  }
-
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    this.activity = binding.activity
-  }
-
-  override fun onDetachedFromActivityForConfigChanges() {
-    onDetachedFromActivity()
-  }
-
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    onAttachedToActivity(binding)
-  }
-
-  override fun onDetachedFromActivity() {
-    this.activity = null
   }
 
   override fun initialize(
@@ -80,15 +62,19 @@ class FlutterHelpCrunchPlugin: FlutterPlugin, FlutterHelpCrunchApi, ActivityAwar
       .applyFromTheme(theme)
       .build()
 
+    var options: HCOptions? = null
 
-    val hcTheme = HCTheme.Builder()
-      .setChatAreaTheme(messageChatAreaTheme)
-      .setMessageAreaTheme(messageAreaTheme)
-      .setToolbarAreaTheme(toolbarAreaTheme)
-      .setSystemAlertsTheme(systemAlertsTheme)
-      .setPreChatTheme(preChatTheme).build()
+    if(theme != null) {
+      val hcTheme = HCTheme.Builder(theme.primaryColor.toInt())
+        .setChatAreaTheme(messageChatAreaTheme)
+        .setMessageAreaTheme(messageAreaTheme)
+        .setToolbarAreaTheme(toolbarAreaTheme)
+        .setSystemAlertsTheme(systemAlertsTheme)
+        .setPreChatTheme(preChatTheme).build()
+      options = HCOptions.Builder().setTheme(hcTheme).build()
+    }
 
-    val options = HCOptions.Builder().setTheme(hcTheme).build()
+
 
 
     HelpCrunch.initialize(

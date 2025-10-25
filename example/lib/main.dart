@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_help_crunch/flutter_help_crunch.dart';
 
 void main() {
@@ -16,35 +15,88 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   final _flutterHelpCrunchPlugin = FlutterHelpCrunch();
-
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    initHelpCrunch();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _flutterHelpCrunchPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+  FHCTheme _buildTheme() {
+    final avatarTheme = FHCAvatarTheme(
+      useDefaultAvatarColors: true,
+      placeholderBackgroundColor: 0xFF3DCB79,
+      placeholderTextColor: 0xFFFFFFFF,
+    );
+    final messageAreaTheme = FHCMessageAreaTheme(
+      backgroundColor: 0xFF3A3A3C,
+      inputOutlineColor: 0xFF3A3A3C,
+      inputFieldTextColor: 0xFFFFFFFF,
+      inputFieldTextHintColor: 0xFF8E8E93,
+      messageMenuBackgroundColor: 0xFF3A3A3C,
+      messageMenuSummaryTextColor: 0xFFFFFFFF,
+      messageMenuIconColor: 0xFFFFFFFF,
+      messageMenuTextColor: 0xFFFFFFFF,
+    );
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+    final chatAreaTheme = FHCChatAreaTheme(
+      backgroundColor: 0xFF121212,
+      brandingType: FHCBrandingType.dark,
+      incomingBubbleColor: 0xFF1C1C1E,
+      incomingBubbleTextColor: 0xFFFFFFFF,
+      outcomingBubbleColor: 0xFFFFA635,
+      outcomingBubbleTextColor: 0xFFFFFFFF,
+      incomingBlockQuoteColor: 0x7AFFFFFF,
+      incomingCodeBackgroundColor: 0xFF2E2E4A,
+      incomingCodeTextColor: 0xAEFFFFFF,
+      outcomingBlockQuoteColor: 0x7AFFFFFF,
+      outcomingCodeBackgroundColor: 0xFF4D4D7F,
+      outcomingCodeTextColor: 0xAEFFFFFF,
+      incomingFileTextColor: 0xFFFFA635,
+      outcomingFileTextColor: 0xFFFFA635,
+      authorNameColor: 0xFFFFA635,
+      systemMessageColor: 0xFFFFFFFF,
+      timeTextColor: 0xFFFFFFFF,
+      progressViewsColor: 0xFFFFFFFF,
+      chatBackgroundColor: 0xFF121212,
+    );
 
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+    const toolbarAreaTheme = FHCToolbarAreaTheme(
+      agentsTextColor: 0xFFFFFFFF,
+      backgroundColor: 0xFF3A3A3C,
+      statusBarColor: 0xFF3A3A3C,
+      outlineColor: 0xFF3A3A3C,
+    );
+    const preChatTheme = FHCPreChatTheme(
+      backgroundColor: 0xFFFFA635,
+      messageBackgroundColor: 0xFFFFA635,
+      messageTextColor: 0xFFFFFFFF,
+    );
+
+    const systemAlertTheme = FHCSystemAlertsTheme(
+        dialogsHeaderColor: 0xFF2E2C2E,
+        toastsBackgroundColor: 0xFFFFFFFF,
+        toastsTextColor: 0xFF121212,
+        welcomeMessageBackgroundColor: 0xFF2E2C2E,
+        welcomeMessageTextColor: 0xFFFFFFFF,
+        warningDialogsHeaderColor: 0xFFED5558);
+
+    return FHCTheme(
+        chatAreaTheme: chatAreaTheme,
+        avatarTheme: avatarTheme,
+        messageAreaTheme: messageAreaTheme,
+        toolbarAreaTheme: toolbarAreaTheme,
+        preChatTheme: preChatTheme,
+        systemAlertsTheme: systemAlertTheme,
+        primaryColor: 0xFFFFA635);
+  }
+
+  Future<void> initHelpCrunch() async {
+    _flutterHelpCrunchPlugin.initialize(
+        configuration: FHCConfiguration(
+            organization: "", applicationId: -1, applicationSecret: ""),
+        user: FHCUser(id: "501990"),
+        theme: _buildTheme());
   }
 
   @override
@@ -54,8 +106,29 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  _flutterHelpCrunchPlugin.showChatScreen();
+                },
+                child: const Text('Show HelpCrunch Chat Screen'),
+              ),
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  _flutterHelpCrunchPlugin.sendMessage(
+                      message: "Hi Ugo, I would like to extend my loan.",
+                      isForceNewChat: false);
+                },
+                child: const Text('Send Message to HelpCrunch'),
+              ),
+            ),
+          ],
         ),
       ),
     );

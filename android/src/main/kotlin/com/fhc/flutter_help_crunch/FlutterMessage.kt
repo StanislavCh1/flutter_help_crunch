@@ -91,14 +91,14 @@ enum class BrandingTypeMessage(val raw: Int) {
 /** Generated class from Pigeon that represents data sent in messages. */
 data class ConfigurationMessage (
   val organization: String,
-  val applicationId: String,
+  val applicationId: Long,
   val applicationSecret: String
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): ConfigurationMessage {
       val organization = pigeonVar_list[0] as String
-      val applicationId = pigeonVar_list[1] as String
+      val applicationId = pigeonVar_list[1] as Long
       val applicationSecret = pigeonVar_list[2] as String
       return ConfigurationMessage(organization, applicationId, applicationSecret)
     }
@@ -162,23 +162,23 @@ data class UserMessage (
 /** Generated class from Pigeon that represents data sent in messages. */
 data class AvatarThemeMessage (
   val useDefaultAvatarColors: Boolean,
-  val placeholderBackgroundColorHex: String? = null,
-  val placeholderTextColorHex: String? = null
+  val placeholderBackgroundColor: Long? = null,
+  val placeholderTextColor: Long? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): AvatarThemeMessage {
       val useDefaultAvatarColors = pigeonVar_list[0] as Boolean
-      val placeholderBackgroundColorHex = pigeonVar_list[1] as String?
-      val placeholderTextColorHex = pigeonVar_list[2] as String?
-      return AvatarThemeMessage(useDefaultAvatarColors, placeholderBackgroundColorHex, placeholderTextColorHex)
+      val placeholderBackgroundColor = pigeonVar_list[1] as Long?
+      val placeholderTextColor = pigeonVar_list[2] as Long?
+      return AvatarThemeMessage(useDefaultAvatarColors, placeholderBackgroundColor, placeholderTextColor)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       useDefaultAvatarColors,
-      placeholderBackgroundColorHex,
-      placeholderTextColorHex,
+      placeholderBackgroundColor,
+      placeholderTextColor,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -195,39 +195,39 @@ data class AvatarThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MessageAreaThemeMessage (
-  val backgroundColorHex: String? = null,
-  val inputOutlineColorHex: String? = null,
-  val inputFieldTextColorHex: String? = null,
-  val inputFieldTextHintColorHex: String? = null,
-  val messageMenuBackgroundColorHex: String? = null,
-  val messageMenuTextColorHex: String? = null,
-  val messageMenuSummaryTextColorHex: String? = null,
-  val messageMenuIconColorHex: String? = null
+  val backgroundColor: Long? = null,
+  val inputOutlineColor: Long? = null,
+  val inputFieldTextColor: Long? = null,
+  val inputFieldTextHintColor: Long? = null,
+  val messageMenuBackgroundColor: Long? = null,
+  val messageMenuTextColor: Long? = null,
+  val messageMenuSummaryTextColor: Long? = null,
+  val messageMenuIconColor: Long? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): MessageAreaThemeMessage {
-      val backgroundColorHex = pigeonVar_list[0] as String?
-      val inputOutlineColorHex = pigeonVar_list[1] as String?
-      val inputFieldTextColorHex = pigeonVar_list[2] as String?
-      val inputFieldTextHintColorHex = pigeonVar_list[3] as String?
-      val messageMenuBackgroundColorHex = pigeonVar_list[4] as String?
-      val messageMenuTextColorHex = pigeonVar_list[5] as String?
-      val messageMenuSummaryTextColorHex = pigeonVar_list[6] as String?
-      val messageMenuIconColorHex = pigeonVar_list[7] as String?
-      return MessageAreaThemeMessage(backgroundColorHex, inputOutlineColorHex, inputFieldTextColorHex, inputFieldTextHintColorHex, messageMenuBackgroundColorHex, messageMenuTextColorHex, messageMenuSummaryTextColorHex, messageMenuIconColorHex)
+      val backgroundColor = pigeonVar_list[0] as Long?
+      val inputOutlineColor = pigeonVar_list[1] as Long?
+      val inputFieldTextColor = pigeonVar_list[2] as Long?
+      val inputFieldTextHintColor = pigeonVar_list[3] as Long?
+      val messageMenuBackgroundColor = pigeonVar_list[4] as Long?
+      val messageMenuTextColor = pigeonVar_list[5] as Long?
+      val messageMenuSummaryTextColor = pigeonVar_list[6] as Long?
+      val messageMenuIconColor = pigeonVar_list[7] as Long?
+      return MessageAreaThemeMessage(backgroundColor, inputOutlineColor, inputFieldTextColor, inputFieldTextHintColor, messageMenuBackgroundColor, messageMenuTextColor, messageMenuSummaryTextColor, messageMenuIconColor)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
-      backgroundColorHex,
-      inputOutlineColorHex,
-      inputFieldTextColorHex,
-      inputFieldTextHintColorHex,
-      messageMenuBackgroundColorHex,
-      messageMenuTextColorHex,
-      messageMenuSummaryTextColorHex,
-      messageMenuIconColorHex,
+      backgroundColor,
+      inputOutlineColor,
+      inputFieldTextColor,
+      inputFieldTextHintColor,
+      messageMenuBackgroundColor,
+      messageMenuTextColor,
+      messageMenuSummaryTextColor,
+      messageMenuIconColor,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -244,33 +244,72 @@ data class MessageAreaThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class ChatAreaThemeMessage (
-  val incomingBubbleTextColorHex: String? = null,
-  val outcomingBubbleTextColorHex: String? = null,
-  val incomingBubbleColorHex: String? = null,
-  val outcomingBubbleColorHex: String? = null,
-  val backgroundColorHex: String? = null,
-  val brandingType: BrandingTypeMessage
+  val incomingBubbleTextColor: Long? = null,
+  val outcomingBubbleTextColor: Long? = null,
+  val incomingBubbleColor: Long? = null,
+  val outcomingBubbleColor: Long? = null,
+  val backgroundColor: Long? = null,
+  val brandingType: BrandingTypeMessage,
+  val incomingCodeBackgroundColor: Long? = null,
+  val outcomingCodeBackgroundColor: Long? = null,
+  val incomingCodeTextColor: Long? = null,
+  val outcomingCodeTextColor: Long? = null,
+  val incomingBlockQuoteColor: Long? = null,
+  val outcomingBlockQuoteColor: Long? = null,
+  val incomingFileTextColor: Long? = null,
+  val outcomingFileTextColor: Long? = null,
+  val authorNameColor: Long? = null,
+  val systemMessageColor: Long? = null,
+  val timeTextColor: Long? = null,
+  val progressViewsColor: Long? = null,
+  val chatBackgroundColor: Long? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): ChatAreaThemeMessage {
-      val incomingBubbleTextColorHex = pigeonVar_list[0] as String?
-      val outcomingBubbleTextColorHex = pigeonVar_list[1] as String?
-      val incomingBubbleColorHex = pigeonVar_list[2] as String?
-      val outcomingBubbleColorHex = pigeonVar_list[3] as String?
-      val backgroundColorHex = pigeonVar_list[4] as String?
+      val incomingBubbleTextColor = pigeonVar_list[0] as Long?
+      val outcomingBubbleTextColor = pigeonVar_list[1] as Long?
+      val incomingBubbleColor = pigeonVar_list[2] as Long?
+      val outcomingBubbleColor = pigeonVar_list[3] as Long?
+      val backgroundColor = pigeonVar_list[4] as Long?
       val brandingType = pigeonVar_list[5] as BrandingTypeMessage
-      return ChatAreaThemeMessage(incomingBubbleTextColorHex, outcomingBubbleTextColorHex, incomingBubbleColorHex, outcomingBubbleColorHex, backgroundColorHex, brandingType)
+      val incomingCodeBackgroundColor = pigeonVar_list[6] as Long?
+      val outcomingCodeBackgroundColor = pigeonVar_list[7] as Long?
+      val incomingCodeTextColor = pigeonVar_list[8] as Long?
+      val outcomingCodeTextColor = pigeonVar_list[9] as Long?
+      val incomingBlockQuoteColor = pigeonVar_list[10] as Long?
+      val outcomingBlockQuoteColor = pigeonVar_list[11] as Long?
+      val incomingFileTextColor = pigeonVar_list[12] as Long?
+      val outcomingFileTextColor = pigeonVar_list[13] as Long?
+      val authorNameColor = pigeonVar_list[14] as Long?
+      val systemMessageColor = pigeonVar_list[15] as Long?
+      val timeTextColor = pigeonVar_list[16] as Long?
+      val progressViewsColor = pigeonVar_list[17] as Long?
+      val chatBackgroundColor = pigeonVar_list[18] as Long?
+      return ChatAreaThemeMessage(incomingBubbleTextColor, outcomingBubbleTextColor, incomingBubbleColor, outcomingBubbleColor, backgroundColor, brandingType, incomingCodeBackgroundColor, outcomingCodeBackgroundColor, incomingCodeTextColor, outcomingCodeTextColor, incomingBlockQuoteColor, outcomingBlockQuoteColor, incomingFileTextColor, outcomingFileTextColor, authorNameColor, systemMessageColor, timeTextColor, progressViewsColor, chatBackgroundColor)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
-      incomingBubbleTextColorHex,
-      outcomingBubbleTextColorHex,
-      incomingBubbleColorHex,
-      outcomingBubbleColorHex,
-      backgroundColorHex,
+      incomingBubbleTextColor,
+      outcomingBubbleTextColor,
+      incomingBubbleColor,
+      outcomingBubbleColor,
+      backgroundColor,
       brandingType,
+      incomingCodeBackgroundColor,
+      outcomingCodeBackgroundColor,
+      incomingCodeTextColor,
+      outcomingCodeTextColor,
+      incomingBlockQuoteColor,
+      outcomingBlockQuoteColor,
+      incomingFileTextColor,
+      outcomingFileTextColor,
+      authorNameColor,
+      systemMessageColor,
+      timeTextColor,
+      progressViewsColor,
+      chatBackgroundColor,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -287,33 +326,33 @@ data class ChatAreaThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class SystemAlertsThemeMessage (
-  val dialogsHeaderColorHex: String? = null,
-  val toastsBackgroundColorHex: String? = null,
-  val toastsTextColorHex: String? = null,
-  val welcomeMessageBackgroundColorHex: String? = null,
-  val welcomeMessageTextColorHex: String? = null,
-  val warningDialogsHeaderColorHex: String? = null
+  val dialogsHeaderColor: Long? = null,
+  val toastsBackgroundColor: Long? = null,
+  val toastsTextColor: Long? = null,
+  val welcomeMessageBackgroundColor: Long? = null,
+  val welcomeMessageTextColor: Long? = null,
+  val warningDialogsHeaderColor: Long? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): SystemAlertsThemeMessage {
-      val dialogsHeaderColorHex = pigeonVar_list[0] as String?
-      val toastsBackgroundColorHex = pigeonVar_list[1] as String?
-      val toastsTextColorHex = pigeonVar_list[2] as String?
-      val welcomeMessageBackgroundColorHex = pigeonVar_list[3] as String?
-      val welcomeMessageTextColorHex = pigeonVar_list[4] as String?
-      val warningDialogsHeaderColorHex = pigeonVar_list[5] as String?
-      return SystemAlertsThemeMessage(dialogsHeaderColorHex, toastsBackgroundColorHex, toastsTextColorHex, welcomeMessageBackgroundColorHex, welcomeMessageTextColorHex, warningDialogsHeaderColorHex)
+      val dialogsHeaderColor = pigeonVar_list[0] as Long?
+      val toastsBackgroundColor = pigeonVar_list[1] as Long?
+      val toastsTextColor = pigeonVar_list[2] as Long?
+      val welcomeMessageBackgroundColor = pigeonVar_list[3] as Long?
+      val welcomeMessageTextColor = pigeonVar_list[4] as Long?
+      val warningDialogsHeaderColor = pigeonVar_list[5] as Long?
+      return SystemAlertsThemeMessage(dialogsHeaderColor, toastsBackgroundColor, toastsTextColor, welcomeMessageBackgroundColor, welcomeMessageTextColor, warningDialogsHeaderColor)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
-      dialogsHeaderColorHex,
-      toastsBackgroundColorHex,
-      toastsTextColorHex,
-      welcomeMessageBackgroundColorHex,
-      welcomeMessageTextColorHex,
-      warningDialogsHeaderColorHex,
+      dialogsHeaderColor,
+      toastsBackgroundColor,
+      toastsTextColor,
+      welcomeMessageBackgroundColor,
+      welcomeMessageTextColor,
+      warningDialogsHeaderColor,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -330,30 +369,30 @@ data class SystemAlertsThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class PreChatThemeMessage (
-  val inputFieldTextColorHex: String? = null,
-  val inputFieldTextHintColorHex: String? = null,
-  val backgroundColorHex: String? = null,
-  val messageBackgroundColorHex: String? = null,
-  val messageTextColorHex: String? = null
+  val inputFieldTextColor: Long? = null,
+  val inputFieldTextHintColor: Long? = null,
+  val backgroundColor: Long? = null,
+  val messageBackgroundColor: Long? = null,
+  val messageTextColor: Long? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): PreChatThemeMessage {
-      val inputFieldTextColorHex = pigeonVar_list[0] as String?
-      val inputFieldTextHintColorHex = pigeonVar_list[1] as String?
-      val backgroundColorHex = pigeonVar_list[2] as String?
-      val messageBackgroundColorHex = pigeonVar_list[3] as String?
-      val messageTextColorHex = pigeonVar_list[4] as String?
-      return PreChatThemeMessage(inputFieldTextColorHex, inputFieldTextHintColorHex, backgroundColorHex, messageBackgroundColorHex, messageTextColorHex)
+      val inputFieldTextColor = pigeonVar_list[0] as Long?
+      val inputFieldTextHintColor = pigeonVar_list[1] as Long?
+      val backgroundColor = pigeonVar_list[2] as Long?
+      val messageBackgroundColor = pigeonVar_list[3] as Long?
+      val messageTextColor = pigeonVar_list[4] as Long?
+      return PreChatThemeMessage(inputFieldTextColor, inputFieldTextHintColor, backgroundColor, messageBackgroundColor, messageTextColor)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
-      inputFieldTextColorHex,
-      inputFieldTextHintColorHex,
-      backgroundColorHex,
-      messageBackgroundColorHex,
-      messageTextColorHex,
+      inputFieldTextColor,
+      inputFieldTextHintColor,
+      backgroundColor,
+      messageBackgroundColor,
+      messageTextColor,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -370,30 +409,27 @@ data class PreChatThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class ToolbarAreaThemeMessage (
-  val backgroundColorHex: String? = null,
-  val statusBarColorHex: String? = null,
-  val outlineColorHex: String? = null,
-  val agentsTextColorHex: String? = null,
-  val avatarTheme: AvatarThemeMessage? = null
+  val backgroundColor: Long? = null,
+  val statusBarColor: Long? = null,
+  val outlineColor: Long? = null,
+  val agentsTextColor: Long? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): ToolbarAreaThemeMessage {
-      val backgroundColorHex = pigeonVar_list[0] as String?
-      val statusBarColorHex = pigeonVar_list[1] as String?
-      val outlineColorHex = pigeonVar_list[2] as String?
-      val agentsTextColorHex = pigeonVar_list[3] as String?
-      val avatarTheme = pigeonVar_list[4] as AvatarThemeMessage?
-      return ToolbarAreaThemeMessage(backgroundColorHex, statusBarColorHex, outlineColorHex, agentsTextColorHex, avatarTheme)
+      val backgroundColor = pigeonVar_list[0] as Long?
+      val statusBarColor = pigeonVar_list[1] as Long?
+      val outlineColor = pigeonVar_list[2] as Long?
+      val agentsTextColor = pigeonVar_list[3] as Long?
+      return ToolbarAreaThemeMessage(backgroundColor, statusBarColor, outlineColor, agentsTextColor)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
-      backgroundColorHex,
-      statusBarColorHex,
-      outlineColorHex,
-      agentsTextColorHex,
-      avatarTheme,
+      backgroundColor,
+      statusBarColor,
+      outlineColor,
+      agentsTextColor,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -410,7 +446,7 @@ data class ToolbarAreaThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class ThemeMessage (
-  val primaryColorHex: String? = null,
+  val primaryColor: Long,
   val toolbarAreaTheme: ToolbarAreaThemeMessage? = null,
   val chatAreaTheme: ChatAreaThemeMessage? = null,
   val messageAreaTheme: MessageAreaThemeMessage? = null,
@@ -421,19 +457,19 @@ data class ThemeMessage (
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): ThemeMessage {
-      val primaryColorHex = pigeonVar_list[0] as String?
+      val primaryColor = pigeonVar_list[0] as Long
       val toolbarAreaTheme = pigeonVar_list[1] as ToolbarAreaThemeMessage?
       val chatAreaTheme = pigeonVar_list[2] as ChatAreaThemeMessage?
       val messageAreaTheme = pigeonVar_list[3] as MessageAreaThemeMessage?
       val preChatTheme = pigeonVar_list[4] as PreChatThemeMessage?
       val systemAlertsTheme = pigeonVar_list[5] as SystemAlertsThemeMessage?
       val avatarTheme = pigeonVar_list[6] as AvatarThemeMessage?
-      return ThemeMessage(primaryColorHex, toolbarAreaTheme, chatAreaTheme, messageAreaTheme, preChatTheme, systemAlertsTheme, avatarTheme)
+      return ThemeMessage(primaryColor, toolbarAreaTheme, chatAreaTheme, messageAreaTheme, preChatTheme, systemAlertsTheme, avatarTheme)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
-      primaryColorHex,
+      primaryColor,
       toolbarAreaTheme,
       chatAreaTheme,
       messageAreaTheme,

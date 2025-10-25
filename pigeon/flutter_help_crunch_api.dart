@@ -25,7 +25,7 @@ abstract class FlutterHelpCrunchApi {
 
 class ConfigurationMessage {
   final String organization;
-  final String applicationId;
+  final int applicationId;
   final String applicationSecret;
   ConfigurationMessage({
     required this.organization,
@@ -47,114 +47,136 @@ enum BrandingTypeMessage { light, dark }
 
 class AvatarThemeMessage {
   final bool useDefaultAvatarColors;
-  final String? placeholderBackgroundColorHex;
-  final String? placeholderTextColorHex;
+  final int? placeholderBackgroundColor;
+  final int? placeholderTextColor;
 
   AvatarThemeMessage({
     this.useDefaultAvatarColors = true,
-    this.placeholderBackgroundColorHex,
-    this.placeholderTextColorHex,
+    this.placeholderBackgroundColor,
+    this.placeholderTextColor,
   });
 }
 
 // ---------------------------------------------------------------
 
 class MessageAreaThemeMessage {
-  final String? backgroundColorHex;
-  final String? inputOutlineColorHex;
-  final String? inputFieldTextColorHex;
-  final String? inputFieldTextHintColorHex;
-  final String? messageMenuBackgroundColorHex;
-  final String? messageMenuTextColorHex;
-  final String? messageMenuSummaryTextColorHex;
-  final String? messageMenuIconColorHex;
+  final int? backgroundColor;
+  final int? inputOutlineColor;
+  final int? inputFieldTextColor;
+  final int? inputFieldTextHintColor;
+  final int? messageMenuBackgroundColor;
+  final int? messageMenuTextColor;
+  final int? messageMenuSummaryTextColor;
+  final int? messageMenuIconColor;
 
   MessageAreaThemeMessage({
-    this.backgroundColorHex,
-    this.inputOutlineColorHex,
-    this.inputFieldTextColorHex,
-    this.inputFieldTextHintColorHex,
-    this.messageMenuBackgroundColorHex,
-    this.messageMenuTextColorHex,
-    this.messageMenuSummaryTextColorHex,
-    this.messageMenuIconColorHex,
+    this.backgroundColor,
+    this.inputOutlineColor,
+    this.inputFieldTextColor,
+    this.inputFieldTextHintColor,
+    this.messageMenuBackgroundColor,
+    this.messageMenuTextColor,
+    this.messageMenuSummaryTextColor,
+    this.messageMenuIconColor,
   });
 }
 // ---------------------------------------------------------------
 
 class ChatAreaThemeMessage {
-  final String? incomingBubbleTextColorHex;
-  final String? outcomingBubbleTextColorHex;
-  final String? incomingBubbleColorHex;
-  final String? outcomingBubbleColorHex;
-  final String? backgroundColorHex;
+  final int? incomingBubbleTextColor;
+  final int? outcomingBubbleTextColor;
+  final int? incomingBubbleColor;
+  final int? outcomingBubbleColor;
+  final int? backgroundColor;
   final BrandingTypeMessage brandingType;
-
+  final int? incomingCodeBackgroundColor;
+  final int? outcomingCodeBackgroundColor;
+  final int? incomingCodeTextColor;
+  final int? outcomingCodeTextColor;
+  final int? incomingBlockQuoteColor;
+  final int? outcomingBlockQuoteColor;
+  final int? incomingFileTextColor;
+  final int? outcomingFileTextColor;
+  final int? authorNameColor;
+  final int? systemMessageColor;
+  final int? timeTextColor;
+  final int? progressViewsColor;
+  final int? chatBackgroundColor;
   ChatAreaThemeMessage({
-    this.incomingBubbleTextColorHex,
-    this.outcomingBubbleTextColorHex,
-    this.incomingBubbleColorHex,
-    this.outcomingBubbleColorHex,
-    this.backgroundColorHex,
+    this.incomingBubbleTextColor,
+    this.outcomingBubbleTextColor,
+    this.incomingBubbleColor,
+    this.outcomingBubbleColor,
+    this.backgroundColor,
     this.brandingType = BrandingTypeMessage.light,
+    this.incomingCodeBackgroundColor,
+    this.outcomingCodeBackgroundColor,
+    this.incomingCodeTextColor,
+    this.outcomingCodeTextColor,
+    this.incomingBlockQuoteColor,
+    this.outcomingBlockQuoteColor,
+    this.incomingFileTextColor,
+    this.outcomingFileTextColor,
+    this.authorNameColor,
+    this.systemMessageColor,
+    this.timeTextColor,
+    this.progressViewsColor,
+    this.chatBackgroundColor,
   });
 }
 
 // ------------------ SYSTEM ALERTS THEME ------------------
 class SystemAlertsThemeMessage {
-  final String? dialogsHeaderColorHex;
-  final String? toastsBackgroundColorHex;
-  final String? toastsTextColorHex;
-  final String? welcomeMessageBackgroundColorHex;
-  final String? welcomeMessageTextColorHex;
-  final String? warningDialogsHeaderColorHex;
-
+  final int? dialogsHeaderColor;
+  final int? toastsBackgroundColor;
+  final int? toastsTextColor;
+  final int? welcomeMessageBackgroundColor;
+  final int? welcomeMessageTextColor;
+  final int? warningDialogsHeaderColor;
   const SystemAlertsThemeMessage({
-    this.dialogsHeaderColorHex,
-    this.toastsBackgroundColorHex,
-    this.toastsTextColorHex,
-    this.welcomeMessageBackgroundColorHex,
-    this.welcomeMessageTextColorHex,
-    this.warningDialogsHeaderColorHex,
+    this.dialogsHeaderColor,
+    this.toastsBackgroundColor,
+    this.toastsTextColor,
+    this.welcomeMessageBackgroundColor,
+    this.welcomeMessageTextColor,
+    this.warningDialogsHeaderColor,
   });
 }
 
 // ------------------ PRECHAT THEME ------------------
 class PreChatThemeMessage {
-  final String? inputFieldTextColorHex;
-  final String? inputFieldTextHintColorHex;
-  final String? backgroundColorHex;
-  final String? messageBackgroundColorHex;
-  final String? messageTextColorHex;
+  final int? inputFieldTextColor;
+  final int? inputFieldTextHintColor;
+  final int? backgroundColor;
+  final int? messageBackgroundColor;
+  final int? messageTextColor;
 
   const PreChatThemeMessage({
-    this.inputFieldTextColorHex,
-    this.inputFieldTextHintColorHex,
-    this.backgroundColorHex,
-    this.messageBackgroundColorHex,
-    this.messageTextColorHex,
+    this.inputFieldTextColor,
+    this.inputFieldTextHintColor,
+    this.backgroundColor,
+    this.messageBackgroundColor,
+    this.messageTextColor,
   });
 }
 
 // ------------------ TOOLBAR AREA THEME ------------------
 class ToolbarAreaThemeMessage {
-  final String? backgroundColorHex;
-  final String? statusBarColorHex;
-  final String? outlineColorHex;
-  final String? agentsTextColorHex;
-  final AvatarThemeMessage? avatarTheme;
+  final int? backgroundColor;
+  final int? statusBarColor;
+  final int? outlineColor;
+  final int? agentsTextColor;
 
   const ToolbarAreaThemeMessage({
-    this.backgroundColorHex,
-    this.statusBarColorHex,
-    this.outlineColorHex,
-    this.agentsTextColorHex,
-    this.avatarTheme,
+    this.backgroundColor,
+    this.statusBarColor,
+    this.outlineColor,
+    this.agentsTextColor,
   });
 }
 
 class ThemeMessage {
-  final String? primaryColorHex;
+  final int primaryColor;
   final ToolbarAreaThemeMessage? toolbarAreaTheme;
   final ChatAreaThemeMessage? chatAreaTheme;
   final MessageAreaThemeMessage? messageAreaTheme;
@@ -162,7 +184,7 @@ class ThemeMessage {
   final SystemAlertsThemeMessage? systemAlertsTheme;
   final AvatarThemeMessage? avatarTheme;
   const ThemeMessage({
-    this.primaryColorHex,
+    required this.primaryColor,
     this.toolbarAreaTheme,
     this.chatAreaTheme,
     this.messageAreaTheme,

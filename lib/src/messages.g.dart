@@ -43,7 +43,7 @@ class ConfigurationMessage {
 
   String organization;
 
-  String applicationId;
+  int applicationId;
 
   String applicationSecret;
 
@@ -62,7 +62,7 @@ class ConfigurationMessage {
     result as List<Object?>;
     return ConfigurationMessage(
       organization: result[0]! as String,
-      applicationId: result[1]! as String,
+      applicationId: result[1]! as int,
       applicationSecret: result[2]! as String,
     );
   }
@@ -144,21 +144,21 @@ class UserMessage {
 class AvatarThemeMessage {
   AvatarThemeMessage({
     required this.useDefaultAvatarColors,
-    this.placeholderBackgroundColorHex,
-    this.placeholderTextColorHex,
+    this.placeholderBackgroundColor,
+    this.placeholderTextColor,
   });
 
   bool useDefaultAvatarColors;
 
-  String? placeholderBackgroundColorHex;
+  int? placeholderBackgroundColor;
 
-  String? placeholderTextColorHex;
+  int? placeholderTextColor;
 
   List<Object?> _toList() {
     return <Object?>[
       useDefaultAvatarColors,
-      placeholderBackgroundColorHex,
-      placeholderTextColorHex,
+      placeholderBackgroundColor,
+      placeholderTextColor,
     ];
   }
 
@@ -169,8 +169,8 @@ class AvatarThemeMessage {
     result as List<Object?>;
     return AvatarThemeMessage(
       useDefaultAvatarColors: result[0]! as bool,
-      placeholderBackgroundColorHex: result[1] as String?,
-      placeholderTextColorHex: result[2] as String?,
+      placeholderBackgroundColor: result[1] as int?,
+      placeholderTextColor: result[2] as int?,
     );
   }
 
@@ -194,42 +194,42 @@ class AvatarThemeMessage {
 
 class MessageAreaThemeMessage {
   MessageAreaThemeMessage({
-    this.backgroundColorHex,
-    this.inputOutlineColorHex,
-    this.inputFieldTextColorHex,
-    this.inputFieldTextHintColorHex,
-    this.messageMenuBackgroundColorHex,
-    this.messageMenuTextColorHex,
-    this.messageMenuSummaryTextColorHex,
-    this.messageMenuIconColorHex,
+    this.backgroundColor,
+    this.inputOutlineColor,
+    this.inputFieldTextColor,
+    this.inputFieldTextHintColor,
+    this.messageMenuBackgroundColor,
+    this.messageMenuTextColor,
+    this.messageMenuSummaryTextColor,
+    this.messageMenuIconColor,
   });
 
-  String? backgroundColorHex;
+  int? backgroundColor;
 
-  String? inputOutlineColorHex;
+  int? inputOutlineColor;
 
-  String? inputFieldTextColorHex;
+  int? inputFieldTextColor;
 
-  String? inputFieldTextHintColorHex;
+  int? inputFieldTextHintColor;
 
-  String? messageMenuBackgroundColorHex;
+  int? messageMenuBackgroundColor;
 
-  String? messageMenuTextColorHex;
+  int? messageMenuTextColor;
 
-  String? messageMenuSummaryTextColorHex;
+  int? messageMenuSummaryTextColor;
 
-  String? messageMenuIconColorHex;
+  int? messageMenuIconColor;
 
   List<Object?> _toList() {
     return <Object?>[
-      backgroundColorHex,
-      inputOutlineColorHex,
-      inputFieldTextColorHex,
-      inputFieldTextHintColorHex,
-      messageMenuBackgroundColorHex,
-      messageMenuTextColorHex,
-      messageMenuSummaryTextColorHex,
-      messageMenuIconColorHex,
+      backgroundColor,
+      inputOutlineColor,
+      inputFieldTextColor,
+      inputFieldTextHintColor,
+      messageMenuBackgroundColor,
+      messageMenuTextColor,
+      messageMenuSummaryTextColor,
+      messageMenuIconColor,
     ];
   }
 
@@ -239,14 +239,14 @@ class MessageAreaThemeMessage {
   static MessageAreaThemeMessage decode(Object result) {
     result as List<Object?>;
     return MessageAreaThemeMessage(
-      backgroundColorHex: result[0] as String?,
-      inputOutlineColorHex: result[1] as String?,
-      inputFieldTextColorHex: result[2] as String?,
-      inputFieldTextHintColorHex: result[3] as String?,
-      messageMenuBackgroundColorHex: result[4] as String?,
-      messageMenuTextColorHex: result[5] as String?,
-      messageMenuSummaryTextColorHex: result[6] as String?,
-      messageMenuIconColorHex: result[7] as String?,
+      backgroundColor: result[0] as int?,
+      inputOutlineColor: result[1] as int?,
+      inputFieldTextColor: result[2] as int?,
+      inputFieldTextHintColor: result[3] as int?,
+      messageMenuBackgroundColor: result[4] as int?,
+      messageMenuTextColor: result[5] as int?,
+      messageMenuSummaryTextColor: result[6] as int?,
+      messageMenuIconColor: result[7] as int?,
     );
   }
 
@@ -270,34 +270,86 @@ class MessageAreaThemeMessage {
 
 class ChatAreaThemeMessage {
   ChatAreaThemeMessage({
-    this.incomingBubbleTextColorHex,
-    this.outcomingBubbleTextColorHex,
-    this.incomingBubbleColorHex,
-    this.outcomingBubbleColorHex,
-    this.backgroundColorHex,
+    this.incomingBubbleTextColor,
+    this.outcomingBubbleTextColor,
+    this.incomingBubbleColor,
+    this.outcomingBubbleColor,
+    this.backgroundColor,
     required this.brandingType,
+    this.incomingCodeBackgroundColor,
+    this.outcomingCodeBackgroundColor,
+    this.incomingCodeTextColor,
+    this.outcomingCodeTextColor,
+    this.incomingBlockQuoteColor,
+    this.outcomingBlockQuoteColor,
+    this.incomingFileTextColor,
+    this.outcomingFileTextColor,
+    this.authorNameColor,
+    this.systemMessageColor,
+    this.timeTextColor,
+    this.progressViewsColor,
+    this.chatBackgroundColor,
   });
 
-  String? incomingBubbleTextColorHex;
+  int? incomingBubbleTextColor;
 
-  String? outcomingBubbleTextColorHex;
+  int? outcomingBubbleTextColor;
 
-  String? incomingBubbleColorHex;
+  int? incomingBubbleColor;
 
-  String? outcomingBubbleColorHex;
+  int? outcomingBubbleColor;
 
-  String? backgroundColorHex;
+  int? backgroundColor;
 
   BrandingTypeMessage brandingType;
 
+  int? incomingCodeBackgroundColor;
+
+  int? outcomingCodeBackgroundColor;
+
+  int? incomingCodeTextColor;
+
+  int? outcomingCodeTextColor;
+
+  int? incomingBlockQuoteColor;
+
+  int? outcomingBlockQuoteColor;
+
+  int? incomingFileTextColor;
+
+  int? outcomingFileTextColor;
+
+  int? authorNameColor;
+
+  int? systemMessageColor;
+
+  int? timeTextColor;
+
+  int? progressViewsColor;
+
+  int? chatBackgroundColor;
+
   List<Object?> _toList() {
     return <Object?>[
-      incomingBubbleTextColorHex,
-      outcomingBubbleTextColorHex,
-      incomingBubbleColorHex,
-      outcomingBubbleColorHex,
-      backgroundColorHex,
+      incomingBubbleTextColor,
+      outcomingBubbleTextColor,
+      incomingBubbleColor,
+      outcomingBubbleColor,
+      backgroundColor,
       brandingType,
+      incomingCodeBackgroundColor,
+      outcomingCodeBackgroundColor,
+      incomingCodeTextColor,
+      outcomingCodeTextColor,
+      incomingBlockQuoteColor,
+      outcomingBlockQuoteColor,
+      incomingFileTextColor,
+      outcomingFileTextColor,
+      authorNameColor,
+      systemMessageColor,
+      timeTextColor,
+      progressViewsColor,
+      chatBackgroundColor,
     ];
   }
 
@@ -307,12 +359,25 @@ class ChatAreaThemeMessage {
   static ChatAreaThemeMessage decode(Object result) {
     result as List<Object?>;
     return ChatAreaThemeMessage(
-      incomingBubbleTextColorHex: result[0] as String?,
-      outcomingBubbleTextColorHex: result[1] as String?,
-      incomingBubbleColorHex: result[2] as String?,
-      outcomingBubbleColorHex: result[3] as String?,
-      backgroundColorHex: result[4] as String?,
+      incomingBubbleTextColor: result[0] as int?,
+      outcomingBubbleTextColor: result[1] as int?,
+      incomingBubbleColor: result[2] as int?,
+      outcomingBubbleColor: result[3] as int?,
+      backgroundColor: result[4] as int?,
       brandingType: result[5]! as BrandingTypeMessage,
+      incomingCodeBackgroundColor: result[6] as int?,
+      outcomingCodeBackgroundColor: result[7] as int?,
+      incomingCodeTextColor: result[8] as int?,
+      outcomingCodeTextColor: result[9] as int?,
+      incomingBlockQuoteColor: result[10] as int?,
+      outcomingBlockQuoteColor: result[11] as int?,
+      incomingFileTextColor: result[12] as int?,
+      outcomingFileTextColor: result[13] as int?,
+      authorNameColor: result[14] as int?,
+      systemMessageColor: result[15] as int?,
+      timeTextColor: result[16] as int?,
+      progressViewsColor: result[17] as int?,
+      chatBackgroundColor: result[18] as int?,
     );
   }
 
@@ -336,34 +401,34 @@ class ChatAreaThemeMessage {
 
 class SystemAlertsThemeMessage {
   SystemAlertsThemeMessage({
-    this.dialogsHeaderColorHex,
-    this.toastsBackgroundColorHex,
-    this.toastsTextColorHex,
-    this.welcomeMessageBackgroundColorHex,
-    this.welcomeMessageTextColorHex,
-    this.warningDialogsHeaderColorHex,
+    this.dialogsHeaderColor,
+    this.toastsBackgroundColor,
+    this.toastsTextColor,
+    this.welcomeMessageBackgroundColor,
+    this.welcomeMessageTextColor,
+    this.warningDialogsHeaderColor,
   });
 
-  String? dialogsHeaderColorHex;
+  int? dialogsHeaderColor;
 
-  String? toastsBackgroundColorHex;
+  int? toastsBackgroundColor;
 
-  String? toastsTextColorHex;
+  int? toastsTextColor;
 
-  String? welcomeMessageBackgroundColorHex;
+  int? welcomeMessageBackgroundColor;
 
-  String? welcomeMessageTextColorHex;
+  int? welcomeMessageTextColor;
 
-  String? warningDialogsHeaderColorHex;
+  int? warningDialogsHeaderColor;
 
   List<Object?> _toList() {
     return <Object?>[
-      dialogsHeaderColorHex,
-      toastsBackgroundColorHex,
-      toastsTextColorHex,
-      welcomeMessageBackgroundColorHex,
-      welcomeMessageTextColorHex,
-      warningDialogsHeaderColorHex,
+      dialogsHeaderColor,
+      toastsBackgroundColor,
+      toastsTextColor,
+      welcomeMessageBackgroundColor,
+      welcomeMessageTextColor,
+      warningDialogsHeaderColor,
     ];
   }
 
@@ -373,12 +438,12 @@ class SystemAlertsThemeMessage {
   static SystemAlertsThemeMessage decode(Object result) {
     result as List<Object?>;
     return SystemAlertsThemeMessage(
-      dialogsHeaderColorHex: result[0] as String?,
-      toastsBackgroundColorHex: result[1] as String?,
-      toastsTextColorHex: result[2] as String?,
-      welcomeMessageBackgroundColorHex: result[3] as String?,
-      welcomeMessageTextColorHex: result[4] as String?,
-      warningDialogsHeaderColorHex: result[5] as String?,
+      dialogsHeaderColor: result[0] as int?,
+      toastsBackgroundColor: result[1] as int?,
+      toastsTextColor: result[2] as int?,
+      welcomeMessageBackgroundColor: result[3] as int?,
+      welcomeMessageTextColor: result[4] as int?,
+      warningDialogsHeaderColor: result[5] as int?,
     );
   }
 
@@ -402,30 +467,30 @@ class SystemAlertsThemeMessage {
 
 class PreChatThemeMessage {
   PreChatThemeMessage({
-    this.inputFieldTextColorHex,
-    this.inputFieldTextHintColorHex,
-    this.backgroundColorHex,
-    this.messageBackgroundColorHex,
-    this.messageTextColorHex,
+    this.inputFieldTextColor,
+    this.inputFieldTextHintColor,
+    this.backgroundColor,
+    this.messageBackgroundColor,
+    this.messageTextColor,
   });
 
-  String? inputFieldTextColorHex;
+  int? inputFieldTextColor;
 
-  String? inputFieldTextHintColorHex;
+  int? inputFieldTextHintColor;
 
-  String? backgroundColorHex;
+  int? backgroundColor;
 
-  String? messageBackgroundColorHex;
+  int? messageBackgroundColor;
 
-  String? messageTextColorHex;
+  int? messageTextColor;
 
   List<Object?> _toList() {
     return <Object?>[
-      inputFieldTextColorHex,
-      inputFieldTextHintColorHex,
-      backgroundColorHex,
-      messageBackgroundColorHex,
-      messageTextColorHex,
+      inputFieldTextColor,
+      inputFieldTextHintColor,
+      backgroundColor,
+      messageBackgroundColor,
+      messageTextColor,
     ];
   }
 
@@ -435,11 +500,11 @@ class PreChatThemeMessage {
   static PreChatThemeMessage decode(Object result) {
     result as List<Object?>;
     return PreChatThemeMessage(
-      inputFieldTextColorHex: result[0] as String?,
-      inputFieldTextHintColorHex: result[1] as String?,
-      backgroundColorHex: result[2] as String?,
-      messageBackgroundColorHex: result[3] as String?,
-      messageTextColorHex: result[4] as String?,
+      inputFieldTextColor: result[0] as int?,
+      inputFieldTextHintColor: result[1] as int?,
+      backgroundColor: result[2] as int?,
+      messageBackgroundColor: result[3] as int?,
+      messageTextColor: result[4] as int?,
     );
   }
 
@@ -463,30 +528,26 @@ class PreChatThemeMessage {
 
 class ToolbarAreaThemeMessage {
   ToolbarAreaThemeMessage({
-    this.backgroundColorHex,
-    this.statusBarColorHex,
-    this.outlineColorHex,
-    this.agentsTextColorHex,
-    this.avatarTheme,
+    this.backgroundColor,
+    this.statusBarColor,
+    this.outlineColor,
+    this.agentsTextColor,
   });
 
-  String? backgroundColorHex;
+  int? backgroundColor;
 
-  String? statusBarColorHex;
+  int? statusBarColor;
 
-  String? outlineColorHex;
+  int? outlineColor;
 
-  String? agentsTextColorHex;
-
-  AvatarThemeMessage? avatarTheme;
+  int? agentsTextColor;
 
   List<Object?> _toList() {
     return <Object?>[
-      backgroundColorHex,
-      statusBarColorHex,
-      outlineColorHex,
-      agentsTextColorHex,
-      avatarTheme,
+      backgroundColor,
+      statusBarColor,
+      outlineColor,
+      agentsTextColor,
     ];
   }
 
@@ -496,11 +557,10 @@ class ToolbarAreaThemeMessage {
   static ToolbarAreaThemeMessage decode(Object result) {
     result as List<Object?>;
     return ToolbarAreaThemeMessage(
-      backgroundColorHex: result[0] as String?,
-      statusBarColorHex: result[1] as String?,
-      outlineColorHex: result[2] as String?,
-      agentsTextColorHex: result[3] as String?,
-      avatarTheme: result[4] as AvatarThemeMessage?,
+      backgroundColor: result[0] as int?,
+      statusBarColor: result[1] as int?,
+      outlineColor: result[2] as int?,
+      agentsTextColor: result[3] as int?,
     );
   }
 
@@ -524,7 +584,7 @@ class ToolbarAreaThemeMessage {
 
 class ThemeMessage {
   ThemeMessage({
-    this.primaryColorHex,
+    required this.primaryColor,
     this.toolbarAreaTheme,
     this.chatAreaTheme,
     this.messageAreaTheme,
@@ -533,7 +593,7 @@ class ThemeMessage {
     this.avatarTheme,
   });
 
-  String? primaryColorHex;
+  int primaryColor;
 
   ToolbarAreaThemeMessage? toolbarAreaTheme;
 
@@ -549,7 +609,7 @@ class ThemeMessage {
 
   List<Object?> _toList() {
     return <Object?>[
-      primaryColorHex,
+      primaryColor,
       toolbarAreaTheme,
       chatAreaTheme,
       messageAreaTheme,
@@ -565,7 +625,7 @@ class ThemeMessage {
   static ThemeMessage decode(Object result) {
     result as List<Object?>;
     return ThemeMessage(
-      primaryColorHex: result[0] as String?,
+      primaryColor: result[0]! as int,
       toolbarAreaTheme: result[1] as ToolbarAreaThemeMessage?,
       chatAreaTheme: result[2] as ChatAreaThemeMessage?,
       messageAreaTheme: result[3] as MessageAreaThemeMessage?,
