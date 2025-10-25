@@ -29,7 +29,7 @@ bool _deepEquals(Object? a, Object? b) {
 }
 
 
-enum BrandingType {
+enum BrandingTypeMessage {
   light,
   dark,
 }
@@ -276,7 +276,6 @@ class ChatAreaThemeMessage {
     this.outcomingBubbleColorHex,
     this.backgroundColorHex,
     required this.brandingType,
-    this.avatarTheme,
   });
 
   String? incomingBubbleTextColorHex;
@@ -289,9 +288,7 @@ class ChatAreaThemeMessage {
 
   String? backgroundColorHex;
 
-  BrandingType brandingType;
-
-  AvatarThemeMessage? avatarTheme;
+  BrandingTypeMessage brandingType;
 
   List<Object?> _toList() {
     return <Object?>[
@@ -301,7 +298,6 @@ class ChatAreaThemeMessage {
       outcomingBubbleColorHex,
       backgroundColorHex,
       brandingType,
-      avatarTheme,
     ];
   }
 
@@ -316,8 +312,7 @@ class ChatAreaThemeMessage {
       incomingBubbleColorHex: result[2] as String?,
       outcomingBubbleColorHex: result[3] as String?,
       backgroundColorHex: result[4] as String?,
-      brandingType: result[5]! as BrandingType,
-      avatarTheme: result[6] as AvatarThemeMessage?,
+      brandingType: result[5]! as BrandingTypeMessage,
     );
   }
 
@@ -535,6 +530,7 @@ class ThemeMessage {
     this.messageAreaTheme,
     this.preChatTheme,
     this.systemAlertsTheme,
+    this.avatarTheme,
   });
 
   String? primaryColorHex;
@@ -549,6 +545,8 @@ class ThemeMessage {
 
   SystemAlertsThemeMessage? systemAlertsTheme;
 
+  AvatarThemeMessage? avatarTheme;
+
   List<Object?> _toList() {
     return <Object?>[
       primaryColorHex,
@@ -557,6 +555,7 @@ class ThemeMessage {
       messageAreaTheme,
       preChatTheme,
       systemAlertsTheme,
+      avatarTheme,
     ];
   }
 
@@ -572,6 +571,7 @@ class ThemeMessage {
       messageAreaTheme: result[3] as MessageAreaThemeMessage?,
       preChatTheme: result[4] as PreChatThemeMessage?,
       systemAlertsTheme: result[5] as SystemAlertsThemeMessage?,
+      avatarTheme: result[6] as AvatarThemeMessage?,
     );
   }
 
@@ -601,7 +601,7 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is BrandingType) {
+    }    else if (value is BrandingTypeMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.index);
     }    else if (value is ConfigurationMessage) {
@@ -641,7 +641,7 @@ class _PigeonCodec extends StandardMessageCodec {
     switch (type) {
       case 129: 
         final int? value = readValue(buffer) as int?;
-        return value == null ? null : BrandingType.values[value];
+        return value == null ? null : BrandingTypeMessage.values[value];
       case 130: 
         return ConfigurationMessage.decode(readValue(buffer)!);
       case 131: 

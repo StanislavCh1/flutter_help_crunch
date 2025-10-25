@@ -43,7 +43,7 @@ class UserMessage {
   UserMessage({required this.id, this.name, this.email, this.phone});
 }
 
-enum BrandingType { light, dark }
+enum BrandingTypeMessage { light, dark }
 
 class AvatarThemeMessage {
   final bool useDefaultAvatarColors;
@@ -88,8 +88,7 @@ class ChatAreaThemeMessage {
   final String? incomingBubbleColorHex;
   final String? outcomingBubbleColorHex;
   final String? backgroundColorHex;
-  final BrandingType brandingType;
-  final AvatarThemeMessage? avatarTheme;
+  final BrandingTypeMessage brandingType;
 
   ChatAreaThemeMessage({
     this.incomingBubbleTextColorHex,
@@ -97,8 +96,7 @@ class ChatAreaThemeMessage {
     this.incomingBubbleColorHex,
     this.outcomingBubbleColorHex,
     this.backgroundColorHex,
-    this.brandingType = BrandingType.light,
-    this.avatarTheme,
+    this.brandingType = BrandingTypeMessage.light,
   });
 }
 
@@ -162,7 +160,7 @@ class ThemeMessage {
   final MessageAreaThemeMessage? messageAreaTheme;
   final PreChatThemeMessage? preChatTheme;
   final SystemAlertsThemeMessage? systemAlertsTheme;
-
+  final AvatarThemeMessage? avatarTheme;
   const ThemeMessage({
     this.primaryColorHex,
     this.toolbarAreaTheme,
@@ -170,5 +168,6 @@ class ThemeMessage {
     this.messageAreaTheme,
     this.preChatTheme,
     this.systemAlertsTheme,
+    this.avatarTheme,
   });
 }

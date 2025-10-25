@@ -77,12 +77,12 @@ class FlutterError (
   val details: Any? = null
 ) : Throwable()
 
-enum class BrandingType(val raw: Int) {
+enum class BrandingTypeMessage(val raw: Int) {
   LIGHT(0),
   DARK(1);
 
   companion object {
-    fun ofRaw(raw: Int): BrandingType? {
+    fun ofRaw(raw: Int): BrandingTypeMessage? {
       return values().firstOrNull { it.raw == raw }
     }
   }
@@ -249,8 +249,7 @@ data class ChatAreaThemeMessage (
   val incomingBubbleColorHex: String? = null,
   val outcomingBubbleColorHex: String? = null,
   val backgroundColorHex: String? = null,
-  val brandingType: BrandingType,
-  val avatarTheme: AvatarThemeMessage? = null
+  val brandingType: BrandingTypeMessage
 )
  {
   companion object {
@@ -260,9 +259,8 @@ data class ChatAreaThemeMessage (
       val incomingBubbleColorHex = pigeonVar_list[2] as String?
       val outcomingBubbleColorHex = pigeonVar_list[3] as String?
       val backgroundColorHex = pigeonVar_list[4] as String?
-      val brandingType = pigeonVar_list[5] as BrandingType
-      val avatarTheme = pigeonVar_list[6] as AvatarThemeMessage?
-      return ChatAreaThemeMessage(incomingBubbleTextColorHex, outcomingBubbleTextColorHex, incomingBubbleColorHex, outcomingBubbleColorHex, backgroundColorHex, brandingType, avatarTheme)
+      val brandingType = pigeonVar_list[5] as BrandingTypeMessage
+      return ChatAreaThemeMessage(incomingBubbleTextColorHex, outcomingBubbleTextColorHex, incomingBubbleColorHex, outcomingBubbleColorHex, backgroundColorHex, brandingType)
     }
   }
   fun toList(): List<Any?> {
@@ -273,7 +271,6 @@ data class ChatAreaThemeMessage (
       outcomingBubbleColorHex,
       backgroundColorHex,
       brandingType,
-      avatarTheme,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -418,7 +415,8 @@ data class ThemeMessage (
   val chatAreaTheme: ChatAreaThemeMessage? = null,
   val messageAreaTheme: MessageAreaThemeMessage? = null,
   val preChatTheme: PreChatThemeMessage? = null,
-  val systemAlertsTheme: SystemAlertsThemeMessage? = null
+  val systemAlertsTheme: SystemAlertsThemeMessage? = null,
+  val avatarTheme: AvatarThemeMessage? = null
 )
  {
   companion object {
@@ -429,7 +427,8 @@ data class ThemeMessage (
       val messageAreaTheme = pigeonVar_list[3] as MessageAreaThemeMessage?
       val preChatTheme = pigeonVar_list[4] as PreChatThemeMessage?
       val systemAlertsTheme = pigeonVar_list[5] as SystemAlertsThemeMessage?
-      return ThemeMessage(primaryColorHex, toolbarAreaTheme, chatAreaTheme, messageAreaTheme, preChatTheme, systemAlertsTheme)
+      val avatarTheme = pigeonVar_list[6] as AvatarThemeMessage?
+      return ThemeMessage(primaryColorHex, toolbarAreaTheme, chatAreaTheme, messageAreaTheme, preChatTheme, systemAlertsTheme, avatarTheme)
     }
   }
   fun toList(): List<Any?> {
@@ -440,6 +439,7 @@ data class ThemeMessage (
       messageAreaTheme,
       preChatTheme,
       systemAlertsTheme,
+      avatarTheme,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -458,7 +458,7 @@ private open class FlutterMessagePigeonCodec : StandardMessageCodec() {
     return when (type) {
       129.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          BrandingType.ofRaw(it.toInt())
+          BrandingTypeMessage.ofRaw(it.toInt())
         }
       }
       130.toByte() -> {
@@ -511,7 +511,7 @@ private open class FlutterMessagePigeonCodec : StandardMessageCodec() {
   }
   override fun writeValue(stream: ByteArrayOutputStream, value: Any?)   {
     when (value) {
-      is BrandingType -> {
+      is BrandingTypeMessage -> {
         stream.write(129)
         writeValue(stream, value.raw)
       }

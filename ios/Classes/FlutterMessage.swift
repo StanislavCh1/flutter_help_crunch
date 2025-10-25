@@ -128,7 +128,7 @@ func deepHashFlutterMessage(value: Any?, hasher: inout Hasher) {
 
     
 
-enum BrandingType: Int {
+enum BrandingTypeMessage: Int {
   case light = 0
   case dark = 1
 }
@@ -296,8 +296,7 @@ struct ChatAreaThemeMessage: Hashable {
   var incomingBubbleColorHex: String? = nil
   var outcomingBubbleColorHex: String? = nil
   var backgroundColorHex: String? = nil
-  var brandingType: BrandingType
-  var avatarTheme: AvatarThemeMessage? = nil
+  var brandingType: BrandingTypeMessage
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
@@ -307,8 +306,7 @@ struct ChatAreaThemeMessage: Hashable {
     let incomingBubbleColorHex: String? = nilOrValue(pigeonVar_list[2])
     let outcomingBubbleColorHex: String? = nilOrValue(pigeonVar_list[3])
     let backgroundColorHex: String? = nilOrValue(pigeonVar_list[4])
-    let brandingType = pigeonVar_list[5] as! BrandingType
-    let avatarTheme: AvatarThemeMessage? = nilOrValue(pigeonVar_list[6])
+    let brandingType = pigeonVar_list[5] as! BrandingTypeMessage
 
     return ChatAreaThemeMessage(
       incomingBubbleTextColorHex: incomingBubbleTextColorHex,
@@ -316,8 +314,7 @@ struct ChatAreaThemeMessage: Hashable {
       incomingBubbleColorHex: incomingBubbleColorHex,
       outcomingBubbleColorHex: outcomingBubbleColorHex,
       backgroundColorHex: backgroundColorHex,
-      brandingType: brandingType,
-      avatarTheme: avatarTheme
+      brandingType: brandingType
     )
   }
   func toList() -> [Any?] {
@@ -328,7 +325,6 @@ struct ChatAreaThemeMessage: Hashable {
       outcomingBubbleColorHex,
       backgroundColorHex,
       brandingType,
-      avatarTheme,
     ]
   }
   static func == (lhs: ChatAreaThemeMessage, rhs: ChatAreaThemeMessage) -> Bool {
@@ -473,6 +469,7 @@ struct ThemeMessage: Hashable {
   var messageAreaTheme: MessageAreaThemeMessage? = nil
   var preChatTheme: PreChatThemeMessage? = nil
   var systemAlertsTheme: SystemAlertsThemeMessage? = nil
+  var avatarTheme: AvatarThemeMessage? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
@@ -483,6 +480,7 @@ struct ThemeMessage: Hashable {
     let messageAreaTheme: MessageAreaThemeMessage? = nilOrValue(pigeonVar_list[3])
     let preChatTheme: PreChatThemeMessage? = nilOrValue(pigeonVar_list[4])
     let systemAlertsTheme: SystemAlertsThemeMessage? = nilOrValue(pigeonVar_list[5])
+    let avatarTheme: AvatarThemeMessage? = nilOrValue(pigeonVar_list[6])
 
     return ThemeMessage(
       primaryColorHex: primaryColorHex,
@@ -490,7 +488,8 @@ struct ThemeMessage: Hashable {
       chatAreaTheme: chatAreaTheme,
       messageAreaTheme: messageAreaTheme,
       preChatTheme: preChatTheme,
-      systemAlertsTheme: systemAlertsTheme
+      systemAlertsTheme: systemAlertsTheme,
+      avatarTheme: avatarTheme
     )
   }
   func toList() -> [Any?] {
@@ -501,6 +500,7 @@ struct ThemeMessage: Hashable {
       messageAreaTheme,
       preChatTheme,
       systemAlertsTheme,
+      avatarTheme,
     ]
   }
   static func == (lhs: ThemeMessage, rhs: ThemeMessage) -> Bool {
@@ -516,7 +516,7 @@ private class FlutterMessagePigeonCodecReader: FlutterStandardReader {
     case 129:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return BrandingType(rawValue: enumResultAsInt)
+        return BrandingTypeMessage(rawValue: enumResultAsInt)
       }
       return nil
     case 130:
@@ -545,7 +545,7 @@ private class FlutterMessagePigeonCodecReader: FlutterStandardReader {
 
 private class FlutterMessagePigeonCodecWriter: FlutterStandardWriter {
   override func writeValue(_ value: Any) {
-    if let value = value as? BrandingType {
+    if let value = value as? BrandingTypeMessage {
       super.writeByte(129)
       super.writeValue(value.rawValue)
     } else if let value = value as? ConfigurationMessage {
