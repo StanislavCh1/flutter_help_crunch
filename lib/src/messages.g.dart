@@ -399,72 +399,6 @@ class ChatAreaThemeMessage {
 ;
 }
 
-class SystemAlertsThemeMessage {
-  SystemAlertsThemeMessage({
-    this.dialogsHeaderColor,
-    this.toastsBackgroundColor,
-    this.toastsTextColor,
-    this.welcomeMessageBackgroundColor,
-    this.welcomeMessageTextColor,
-    this.warningDialogsHeaderColor,
-  });
-
-  int? dialogsHeaderColor;
-
-  int? toastsBackgroundColor;
-
-  int? toastsTextColor;
-
-  int? welcomeMessageBackgroundColor;
-
-  int? welcomeMessageTextColor;
-
-  int? warningDialogsHeaderColor;
-
-  List<Object?> _toList() {
-    return <Object?>[
-      dialogsHeaderColor,
-      toastsBackgroundColor,
-      toastsTextColor,
-      welcomeMessageBackgroundColor,
-      welcomeMessageTextColor,
-      warningDialogsHeaderColor,
-    ];
-  }
-
-  Object encode() {
-    return _toList();  }
-
-  static SystemAlertsThemeMessage decode(Object result) {
-    result as List<Object?>;
-    return SystemAlertsThemeMessage(
-      dialogsHeaderColor: result[0] as int?,
-      toastsBackgroundColor: result[1] as int?,
-      toastsTextColor: result[2] as int?,
-      welcomeMessageBackgroundColor: result[3] as int?,
-      welcomeMessageTextColor: result[4] as int?,
-      warningDialogsHeaderColor: result[5] as int?,
-    );
-  }
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) {
-    if (other is! SystemAlertsThemeMessage || other.runtimeType != runtimeType) {
-      return false;
-    }
-    if (identical(this, other)) {
-      return true;
-    }
-    return _deepEquals(encode(), other.encode());
-  }
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
-}
-
 class PreChatThemeMessage {
   PreChatThemeMessage({
     this.inputFieldTextColor,
@@ -589,7 +523,6 @@ class ThemeMessage {
     this.chatAreaTheme,
     this.messageAreaTheme,
     this.preChatTheme,
-    this.systemAlertsTheme,
     this.avatarTheme,
   });
 
@@ -603,8 +536,6 @@ class ThemeMessage {
 
   PreChatThemeMessage? preChatTheme;
 
-  SystemAlertsThemeMessage? systemAlertsTheme;
-
   AvatarThemeMessage? avatarTheme;
 
   List<Object?> _toList() {
@@ -614,7 +545,6 @@ class ThemeMessage {
       chatAreaTheme,
       messageAreaTheme,
       preChatTheme,
-      systemAlertsTheme,
       avatarTheme,
     ];
   }
@@ -630,8 +560,7 @@ class ThemeMessage {
       chatAreaTheme: result[2] as ChatAreaThemeMessage?,
       messageAreaTheme: result[3] as MessageAreaThemeMessage?,
       preChatTheme: result[4] as PreChatThemeMessage?,
-      systemAlertsTheme: result[5] as SystemAlertsThemeMessage?,
-      avatarTheme: result[6] as AvatarThemeMessage?,
+      avatarTheme: result[5] as AvatarThemeMessage?,
     );
   }
 
@@ -679,17 +608,14 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is ChatAreaThemeMessage) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
-    }    else if (value is SystemAlertsThemeMessage) {
+    }    else if (value is PreChatThemeMessage) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
-    }    else if (value is PreChatThemeMessage) {
+    }    else if (value is ToolbarAreaThemeMessage) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
-    }    else if (value is ToolbarAreaThemeMessage) {
-      buffer.putUint8(137);
-      writeValue(buffer, value.encode());
     }    else if (value is ThemeMessage) {
-      buffer.putUint8(138);
+      buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -713,12 +639,10 @@ class _PigeonCodec extends StandardMessageCodec {
       case 134: 
         return ChatAreaThemeMessage.decode(readValue(buffer)!);
       case 135: 
-        return SystemAlertsThemeMessage.decode(readValue(buffer)!);
-      case 136: 
         return PreChatThemeMessage.decode(readValue(buffer)!);
-      case 137: 
+      case 136: 
         return ToolbarAreaThemeMessage.decode(readValue(buffer)!);
-      case 138: 
+      case 137: 
         return ThemeMessage.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);

@@ -325,49 +325,6 @@ data class ChatAreaThemeMessage (
 }
 
 /** Generated class from Pigeon that represents data sent in messages. */
-data class SystemAlertsThemeMessage (
-  val dialogsHeaderColor: Long? = null,
-  val toastsBackgroundColor: Long? = null,
-  val toastsTextColor: Long? = null,
-  val welcomeMessageBackgroundColor: Long? = null,
-  val welcomeMessageTextColor: Long? = null,
-  val warningDialogsHeaderColor: Long? = null
-)
- {
-  companion object {
-    fun fromList(pigeonVar_list: List<Any?>): SystemAlertsThemeMessage {
-      val dialogsHeaderColor = pigeonVar_list[0] as Long?
-      val toastsBackgroundColor = pigeonVar_list[1] as Long?
-      val toastsTextColor = pigeonVar_list[2] as Long?
-      val welcomeMessageBackgroundColor = pigeonVar_list[3] as Long?
-      val welcomeMessageTextColor = pigeonVar_list[4] as Long?
-      val warningDialogsHeaderColor = pigeonVar_list[5] as Long?
-      return SystemAlertsThemeMessage(dialogsHeaderColor, toastsBackgroundColor, toastsTextColor, welcomeMessageBackgroundColor, welcomeMessageTextColor, warningDialogsHeaderColor)
-    }
-  }
-  fun toList(): List<Any?> {
-    return listOf(
-      dialogsHeaderColor,
-      toastsBackgroundColor,
-      toastsTextColor,
-      welcomeMessageBackgroundColor,
-      welcomeMessageTextColor,
-      warningDialogsHeaderColor,
-    )
-  }
-  override fun equals(other: Any?): Boolean {
-    if (other !is SystemAlertsThemeMessage) {
-      return false
-    }
-    if (this === other) {
-      return true
-    }
-    return FlutterMessagePigeonUtils.deepEquals(toList(), other.toList())  }
-
-  override fun hashCode(): Int = toList().hashCode()
-}
-
-/** Generated class from Pigeon that represents data sent in messages. */
 data class PreChatThemeMessage (
   val inputFieldTextColor: Long? = null,
   val inputFieldTextHintColor: Long? = null,
@@ -451,7 +408,6 @@ data class ThemeMessage (
   val chatAreaTheme: ChatAreaThemeMessage? = null,
   val messageAreaTheme: MessageAreaThemeMessage? = null,
   val preChatTheme: PreChatThemeMessage? = null,
-  val systemAlertsTheme: SystemAlertsThemeMessage? = null,
   val avatarTheme: AvatarThemeMessage? = null
 )
  {
@@ -462,9 +418,8 @@ data class ThemeMessage (
       val chatAreaTheme = pigeonVar_list[2] as ChatAreaThemeMessage?
       val messageAreaTheme = pigeonVar_list[3] as MessageAreaThemeMessage?
       val preChatTheme = pigeonVar_list[4] as PreChatThemeMessage?
-      val systemAlertsTheme = pigeonVar_list[5] as SystemAlertsThemeMessage?
-      val avatarTheme = pigeonVar_list[6] as AvatarThemeMessage?
-      return ThemeMessage(primaryColor, toolbarAreaTheme, chatAreaTheme, messageAreaTheme, preChatTheme, systemAlertsTheme, avatarTheme)
+      val avatarTheme = pigeonVar_list[5] as AvatarThemeMessage?
+      return ThemeMessage(primaryColor, toolbarAreaTheme, chatAreaTheme, messageAreaTheme, preChatTheme, avatarTheme)
     }
   }
   fun toList(): List<Any?> {
@@ -474,7 +429,6 @@ data class ThemeMessage (
       chatAreaTheme,
       messageAreaTheme,
       preChatTheme,
-      systemAlertsTheme,
       avatarTheme,
     )
   }
@@ -524,20 +478,15 @@ private open class FlutterMessagePigeonCodec : StandardMessageCodec() {
       }
       135.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          SystemAlertsThemeMessage.fromList(it)
+          PreChatThemeMessage.fromList(it)
         }
       }
       136.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          PreChatThemeMessage.fromList(it)
-        }
-      }
-      137.toByte() -> {
-        return (readValue(buffer) as? List<Any?>)?.let {
           ToolbarAreaThemeMessage.fromList(it)
         }
       }
-      138.toByte() -> {
+      137.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           ThemeMessage.fromList(it)
         }
@@ -571,20 +520,16 @@ private open class FlutterMessagePigeonCodec : StandardMessageCodec() {
         stream.write(134)
         writeValue(stream, value.toList())
       }
-      is SystemAlertsThemeMessage -> {
+      is PreChatThemeMessage -> {
         stream.write(135)
         writeValue(stream, value.toList())
       }
-      is PreChatThemeMessage -> {
+      is ToolbarAreaThemeMessage -> {
         stream.write(136)
         writeValue(stream, value.toList())
       }
-      is ToolbarAreaThemeMessage -> {
-        stream.write(137)
-        writeValue(stream, value.toList())
-      }
       is ThemeMessage -> {
-        stream.write(138)
+        stream.write(137)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)

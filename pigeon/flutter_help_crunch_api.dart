@@ -125,24 +125,6 @@ class ChatAreaThemeMessage {
   });
 }
 
-// ------------------ SYSTEM ALERTS THEME ------------------
-class SystemAlertsThemeMessage {
-  final int? dialogsHeaderColor;
-  final int? toastsBackgroundColor;
-  final int? toastsTextColor;
-  final int? welcomeMessageBackgroundColor;
-  final int? welcomeMessageTextColor;
-  final int? warningDialogsHeaderColor;
-  const SystemAlertsThemeMessage({
-    this.dialogsHeaderColor,
-    this.toastsBackgroundColor,
-    this.toastsTextColor,
-    this.welcomeMessageBackgroundColor,
-    this.welcomeMessageTextColor,
-    this.warningDialogsHeaderColor,
-  });
-}
-
 // ------------------ PRECHAT THEME ------------------
 class PreChatThemeMessage {
   final int? inputFieldTextColor;
@@ -181,7 +163,6 @@ class ThemeMessage {
   final ChatAreaThemeMessage? chatAreaTheme;
   final MessageAreaThemeMessage? messageAreaTheme;
   final PreChatThemeMessage? preChatTheme;
-  final SystemAlertsThemeMessage? systemAlertsTheme;
   final AvatarThemeMessage? avatarTheme;
   const ThemeMessage({
     required this.primaryColor,
@@ -189,7 +170,6 @@ class ThemeMessage {
     this.chatAreaTheme,
     this.messageAreaTheme,
     this.preChatTheme,
-    this.systemAlertsTheme,
     this.avatarTheme,
   });
 }

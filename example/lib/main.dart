@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_help_crunch/flutter_help_crunch.dart';
 
 void main() {
@@ -73,21 +74,12 @@ class _MyAppState extends State<MyApp> {
       messageTextColor: 0xFFFFFFFF,
     );
 
-    const systemAlertTheme = FHCSystemAlertsTheme(
-        dialogsHeaderColor: 0xFF2E2C2E,
-        toastsBackgroundColor: 0xFFFFFFFF,
-        toastsTextColor: 0xFF121212,
-        welcomeMessageBackgroundColor: 0xFF2E2C2E,
-        welcomeMessageTextColor: 0xFFFFFFFF,
-        warningDialogsHeaderColor: 0xFFED5558);
-
     return FHCTheme(
         chatAreaTheme: chatAreaTheme,
         avatarTheme: avatarTheme,
         messageAreaTheme: messageAreaTheme,
         toolbarAreaTheme: toolbarAreaTheme,
         preChatTheme: preChatTheme,
-        systemAlertsTheme: systemAlertTheme,
         primaryColor: 0xFFFFA635);
   }
 

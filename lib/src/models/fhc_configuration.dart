@@ -168,36 +168,6 @@ class FHCChatAreaTheme {
   }
 }
 
-// ------------------ SYSTEM ALERTS THEME ------------------
-class FHCSystemAlertsTheme {
-  final int? dialogsHeaderColor;
-  final int? toastsBackgroundColor;
-  final int? toastsTextColor;
-  final int? welcomeMessageBackgroundColor;
-  final int? welcomeMessageTextColor;
-  final int? warningDialogsHeaderColor;
-
-  const FHCSystemAlertsTheme({
-    this.dialogsHeaderColor,
-    this.toastsBackgroundColor,
-    this.toastsTextColor,
-    this.welcomeMessageBackgroundColor,
-    this.welcomeMessageTextColor,
-    this.warningDialogsHeaderColor,
-  });
-
-  SystemAlertsThemeMessage toMessage() {
-    return SystemAlertsThemeMessage(
-      dialogsHeaderColor: dialogsHeaderColor,
-      toastsBackgroundColor: toastsBackgroundColor,
-      toastsTextColor: toastsTextColor,
-      welcomeMessageBackgroundColor: welcomeMessageBackgroundColor,
-      welcomeMessageTextColor: welcomeMessageTextColor,
-      warningDialogsHeaderColor: warningDialogsHeaderColor,
-    );
-  }
-}
-
 // ------------------ PRECHAT THEME ------------------
 class FHCPreChatTheme {
   final int? inputFieldTextColor;
@@ -255,7 +225,6 @@ class FHCTheme {
   final FHCChatAreaTheme? chatAreaTheme;
   final FHCMessageAreaTheme? messageAreaTheme;
   final FHCPreChatTheme? preChatTheme;
-  final FHCSystemAlertsTheme? systemAlertsTheme;
   final FHCAvatarTheme? avatarTheme;
   const FHCTheme({
     required this.primaryColor,
@@ -263,7 +232,6 @@ class FHCTheme {
     this.chatAreaTheme,
     this.messageAreaTheme,
     this.preChatTheme,
-    this.systemAlertsTheme,
     this.avatarTheme,
   });
 
@@ -274,7 +242,6 @@ class FHCTheme {
       chatAreaTheme: chatAreaTheme?.toMessage(),
       messageAreaTheme: messageAreaTheme?.toMessage(),
       preChatTheme: preChatTheme?.toMessage(),
-      systemAlertsTheme: systemAlertsTheme?.toMessage(),
     );
   }
 }

@@ -147,30 +147,6 @@ fun HCPreChatTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCPreChatTheme.
     return this
 }
 
-fun HCSystemAlertsTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCSystemAlertsTheme.Builder {
-    val systemAlertsTheme = theme?.systemAlertsTheme ?: return this
-
-    systemAlertsTheme.dialogsHeaderColor
-        ?.let { setDialogsHeaderColor(it.toInt()) }
-
-    systemAlertsTheme.toastsBackgroundColor
-        ?.let { setToastsBackgroundColor(it.toInt()) }
-
-    systemAlertsTheme.toastsTextColor
-        ?.let { setToastsTextColor(it.toInt()) }
-
-    systemAlertsTheme.welcomeMessageBackgroundColor
-        ?.let { setWelcomeMessageBackgroundColor(it.toInt()) }
-
-    systemAlertsTheme.welcomeMessageTextColor
-        ?.let { setWelcomeMessageTextColor(it.toInt()) }
-
-    systemAlertsTheme.warningDialogsHeaderColor
-        ?.let { setWarningDialogsHeaderColor(it.toInt()) }
-
-    return this
-}
-
 fun HCToolbarAreaTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCToolbarAreaTheme.Builder {
     val toolbarAreaTheme = theme?.toolbarAreaTheme ?: return this
 

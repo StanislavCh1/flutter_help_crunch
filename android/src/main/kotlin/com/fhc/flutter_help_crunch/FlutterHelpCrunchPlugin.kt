@@ -18,7 +18,6 @@ import com.helpcrunch.library.core.options.theme.HCAvatarTheme
 import com.helpcrunch.library.core.options.theme.HCChatAreaTheme
 import com.helpcrunch.library.core.options.theme.HCMessageAreaTheme
 import com.helpcrunch.library.core.options.theme.HCPreChatTheme
-import com.helpcrunch.library.core.options.theme.HCSystemAlertsTheme
 import com.helpcrunch.library.core.options.theme.HCTheme
 import com.helpcrunch.library.core.options.theme.HCToolbarAreaTheme
 
@@ -55,9 +54,6 @@ class FlutterHelpCrunchPlugin: FlutterPlugin, FlutterHelpCrunchApi {
     val preChatTheme = HCPreChatTheme.Builder()
       .applyFromTheme(theme)
       .build()
-    val systemAlertsTheme = HCSystemAlertsTheme.Builder()
-      .applyFromTheme(theme)
-      .build()
     val toolbarAreaTheme = HCToolbarAreaTheme.Builder()
       .applyFromTheme(theme)
       .build()
@@ -69,7 +65,6 @@ class FlutterHelpCrunchPlugin: FlutterPlugin, FlutterHelpCrunchApi {
         .setChatAreaTheme(messageChatAreaTheme)
         .setMessageAreaTheme(messageAreaTheme)
         .setToolbarAreaTheme(toolbarAreaTheme)
-        .setSystemAlertsTheme(systemAlertsTheme)
         .setPreChatTheme(preChatTheme).build()
       options = HCOptions.Builder().setTheme(hcTheme).build()
     }
