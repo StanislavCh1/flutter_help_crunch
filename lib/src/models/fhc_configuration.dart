@@ -1,16 +1,26 @@
-//-----------------------------
-
 import 'package:flutter_help_crunch/src/messages.g.dart';
 
+/// Represents the configuration details required to initialize HelpCrunch.
+///
+/// Contains your organization identifier, application ID, and application secret
+/// needed to authenticate with the HelpCrunch
 class FHCConfiguration {
+  /// The name of the organization registered in HelpCrunch.
   final String organization;
+
+  /// The numeric application identifier for your HelpCrunch project.
   final int applicationId;
+
+  /// The secret key associated with your HelpCrunch application.
+
   final String applicationSecret;
   FHCConfiguration({
     required this.organization,
     required this.applicationId,
     required this.applicationSecret,
   });
+
+  /// Converts this configuration to a platform message format.
 
   ConfigurationMessage toMessage() {
     return ConfigurationMessage(
@@ -21,13 +31,28 @@ class FHCConfiguration {
   }
 }
 
+/// Represents the user data passed to HelpCrunch.
+///
+/// Used for identifying and personalizing user sessions in chat and analytics.
 class FHCUser {
+  /// A unique identifier for the user.
   final String id;
+
+  /// The user's display name.
+
   final String? name;
+
+  /// The user's email address.
+
   final String? email;
+
+  /// The user's phone number.
+
   final String? phone;
 
   FHCUser({required this.id, this.name, this.email, this.phone});
+
+  /// Converts this user object to a platform message format.
 
   UserMessage toMessage() {
     return UserMessage(
@@ -39,11 +64,23 @@ class FHCUser {
   }
 }
 
+/// Defines available branding styles for HelpCrunch UI components.
+
 enum FHCBrandingType { light, dark }
 
+/// Defines the appearance of user avatars within the chat interface.
+
 class FHCAvatarTheme {
+  /// Whether to use the default avatar color scheme.
+
   final bool useDefaultAvatarColors;
+
+  /// The background color of the placeholder avatar (ARGB integer).
+
   final int? placeholderBackgroundColor;
+
+  /// The text color used in placeholder avatars (ARGB integer).
+
   final int? placeholderTextColor;
 
   FHCAvatarTheme({
@@ -51,6 +88,8 @@ class FHCAvatarTheme {
     this.placeholderBackgroundColor,
     this.placeholderTextColor,
   });
+
+  /// Converts this avatar theme to a platform message format.
 
   AvatarThemeMessage toMessage() {
     return AvatarThemeMessage(
@@ -62,6 +101,8 @@ class FHCAvatarTheme {
 }
 
 // ---------------------------------------------------------------
+
+/// Customizes the appearance of the message area in the chat screen.
 
 class FHCMessageAreaTheme {
   final int? backgroundColor;
@@ -84,6 +125,8 @@ class FHCMessageAreaTheme {
     this.messageMenuIconColor,
   });
 
+  /// Converts this message area theme to a platform message format.
+
   MessageAreaThemeMessage toMessage() {
     return MessageAreaThemeMessage(
       backgroundColor: backgroundColor,
@@ -99,6 +142,7 @@ class FHCMessageAreaTheme {
 }
 // ---------------------------------------------------------------
 
+/// Defines color and style options for the main chat area.
 class FHCChatAreaTheme {
   final int? incomingBubbleTextColor;
   final int? outcomingBubbleTextColor;
@@ -141,6 +185,8 @@ class FHCChatAreaTheme {
     this.chatBackgroundColor,
   });
 
+  /// Converts this chat area theme to a platform message format.
+
   ChatAreaThemeMessage toMessage() {
     return ChatAreaThemeMessage(
       incomingBubbleTextColor: incomingBubbleTextColor,
@@ -168,7 +214,7 @@ class FHCChatAreaTheme {
   }
 }
 
-// ------------------ PRECHAT THEME ------------------
+/// Defines the appearance of the pre-chat form screen shown before a chat begins.
 class FHCPreChatTheme {
   final int? inputFieldTextColor;
   final int? inputFieldTextHintColor;
@@ -184,6 +230,8 @@ class FHCPreChatTheme {
     this.messageTextColor,
   });
 
+  /// Converts this pre-chat theme to a platform message format.
+
   PreChatThemeMessage toMessage() {
     return PreChatThemeMessage(
       inputFieldTextColor: inputFieldTextColor,
@@ -195,7 +243,7 @@ class FHCPreChatTheme {
   }
 }
 
-// ------------------ TOOLBAR AREA THEME ------------------
+/// Customizes the appearance of the toolbar area in the chat screen.
 class FHCToolbarAreaTheme {
   final int? backgroundColor;
   final int? statusBarColor;
@@ -209,6 +257,8 @@ class FHCToolbarAreaTheme {
     this.agentsTextColor,
   });
 
+  /// Converts this toolbar area theme to a platform message format.
+
   ToolbarAreaThemeMessage toMessage() {
     return ToolbarAreaThemeMessage(
       backgroundColor: backgroundColor,
@@ -219,13 +269,29 @@ class FHCToolbarAreaTheme {
   }
 }
 
+/// Combines all theme areas into a single configuration for HelpCrunch UI.
+///
+/// This class allows customizing colors, text styles, and layout details
+/// for various areas of the HelpCrunch chat interface.
 class FHCTheme {
+  /// The main accent color used across HelpCrunch UI components.
   final int primaryColor;
+
+  /// Customizations for the toolbar area.
   final FHCToolbarAreaTheme? toolbarAreaTheme;
+
+  /// Customizations for the chat area.
   final FHCChatAreaTheme? chatAreaTheme;
+
+  /// Customizations for the message input area.
   final FHCMessageAreaTheme? messageAreaTheme;
+
+  /// Customizations for the pre-chat form.
   final FHCPreChatTheme? preChatTheme;
+
+  /// Customizations for avatar elements.
   final FHCAvatarTheme? avatarTheme;
+
   const FHCTheme({
     required this.primaryColor,
     this.toolbarAreaTheme,
@@ -235,6 +301,7 @@ class FHCTheme {
     this.avatarTheme,
   });
 
+  /// Converts this theme configuration to a platform message format.
   ThemeMessage toMessage() {
     return ThemeMessage(
       primaryColor: primaryColor,
