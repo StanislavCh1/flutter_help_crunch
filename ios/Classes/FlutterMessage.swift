@@ -387,51 +387,6 @@ struct ChatAreaThemeMessage: Hashable {
 }
 
 /// Generated class from Pigeon that represents data sent in messages.
-struct SystemAlertsThemeMessage: Hashable {
-  var dialogsHeaderColor: Int64? = nil
-  var toastsBackgroundColor: Int64? = nil
-  var toastsTextColor: Int64? = nil
-  var welcomeMessageBackgroundColor: Int64? = nil
-  var welcomeMessageTextColor: Int64? = nil
-  var warningDialogsHeaderColor: Int64? = nil
-
-
-  // swift-format-ignore: AlwaysUseLowerCamelCase
-  static func fromList(_ pigeonVar_list: [Any?]) -> SystemAlertsThemeMessage? {
-    let dialogsHeaderColor: Int64? = nilOrValue(pigeonVar_list[0])
-    let toastsBackgroundColor: Int64? = nilOrValue(pigeonVar_list[1])
-    let toastsTextColor: Int64? = nilOrValue(pigeonVar_list[2])
-    let welcomeMessageBackgroundColor: Int64? = nilOrValue(pigeonVar_list[3])
-    let welcomeMessageTextColor: Int64? = nilOrValue(pigeonVar_list[4])
-    let warningDialogsHeaderColor: Int64? = nilOrValue(pigeonVar_list[5])
-
-    return SystemAlertsThemeMessage(
-      dialogsHeaderColor: dialogsHeaderColor,
-      toastsBackgroundColor: toastsBackgroundColor,
-      toastsTextColor: toastsTextColor,
-      welcomeMessageBackgroundColor: welcomeMessageBackgroundColor,
-      welcomeMessageTextColor: welcomeMessageTextColor,
-      warningDialogsHeaderColor: warningDialogsHeaderColor
-    )
-  }
-  func toList() -> [Any?] {
-    return [
-      dialogsHeaderColor,
-      toastsBackgroundColor,
-      toastsTextColor,
-      welcomeMessageBackgroundColor,
-      welcomeMessageTextColor,
-      warningDialogsHeaderColor,
-    ]
-  }
-  static func == (lhs: SystemAlertsThemeMessage, rhs: SystemAlertsThemeMessage) -> Bool {
-    return deepEqualsFlutterMessage(lhs.toList(), rhs.toList())  }
-  func hash(into hasher: inout Hasher) {
-    deepHashFlutterMessage(value: toList(), hasher: &hasher)
-  }
-}
-
-/// Generated class from Pigeon that represents data sent in messages.
 struct PreChatThemeMessage: Hashable {
   var inputFieldTextColor: Int64? = nil
   var inputFieldTextHintColor: Int64? = nil
@@ -516,7 +471,6 @@ struct ThemeMessage: Hashable {
   var chatAreaTheme: ChatAreaThemeMessage? = nil
   var messageAreaTheme: MessageAreaThemeMessage? = nil
   var preChatTheme: PreChatThemeMessage? = nil
-  var systemAlertsTheme: SystemAlertsThemeMessage? = nil
   var avatarTheme: AvatarThemeMessage? = nil
 
 
@@ -527,8 +481,7 @@ struct ThemeMessage: Hashable {
     let chatAreaTheme: ChatAreaThemeMessage? = nilOrValue(pigeonVar_list[2])
     let messageAreaTheme: MessageAreaThemeMessage? = nilOrValue(pigeonVar_list[3])
     let preChatTheme: PreChatThemeMessage? = nilOrValue(pigeonVar_list[4])
-    let systemAlertsTheme: SystemAlertsThemeMessage? = nilOrValue(pigeonVar_list[5])
-    let avatarTheme: AvatarThemeMessage? = nilOrValue(pigeonVar_list[6])
+    let avatarTheme: AvatarThemeMessage? = nilOrValue(pigeonVar_list[5])
 
     return ThemeMessage(
       primaryColor: primaryColor,
@@ -536,7 +489,6 @@ struct ThemeMessage: Hashable {
       chatAreaTheme: chatAreaTheme,
       messageAreaTheme: messageAreaTheme,
       preChatTheme: preChatTheme,
-      systemAlertsTheme: systemAlertsTheme,
       avatarTheme: avatarTheme
     )
   }
@@ -547,7 +499,6 @@ struct ThemeMessage: Hashable {
       chatAreaTheme,
       messageAreaTheme,
       preChatTheme,
-      systemAlertsTheme,
       avatarTheme,
     ]
   }
@@ -578,12 +529,10 @@ private class FlutterMessagePigeonCodecReader: FlutterStandardReader {
     case 134:
       return ChatAreaThemeMessage.fromList(self.readValue() as! [Any?])
     case 135:
-      return SystemAlertsThemeMessage.fromList(self.readValue() as! [Any?])
-    case 136:
       return PreChatThemeMessage.fromList(self.readValue() as! [Any?])
-    case 137:
+    case 136:
       return ToolbarAreaThemeMessage.fromList(self.readValue() as! [Any?])
-    case 138:
+    case 137:
       return ThemeMessage.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
@@ -611,17 +560,14 @@ private class FlutterMessagePigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? ChatAreaThemeMessage {
       super.writeByte(134)
       super.writeValue(value.toList())
-    } else if let value = value as? SystemAlertsThemeMessage {
+    } else if let value = value as? PreChatThemeMessage {
       super.writeByte(135)
       super.writeValue(value.toList())
-    } else if let value = value as? PreChatThemeMessage {
+    } else if let value = value as? ToolbarAreaThemeMessage {
       super.writeByte(136)
       super.writeValue(value.toList())
-    } else if let value = value as? ToolbarAreaThemeMessage {
-      super.writeByte(137)
-      super.writeValue(value.toList())
     } else if let value = value as? ThemeMessage {
-      super.writeByte(138)
+      super.writeByte(137)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)
