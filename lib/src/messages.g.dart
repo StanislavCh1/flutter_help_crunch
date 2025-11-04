@@ -14,20 +14,21 @@ PlatformException _createConnectionError(String channelName) {
     message: 'Unable to establish connection on channel: "$channelName".',
   );
 }
+
 bool _deepEquals(Object? a, Object? b) {
   if (a is List && b is List) {
     return a.length == b.length &&
         a.indexed
-        .every(((int, dynamic) item) => _deepEquals(item.$2, b[item.$1]));
+            .every(((int, dynamic) item) => _deepEquals(item.$2, b[item.$1]));
   }
   if (a is Map && b is Map) {
-    return a.length == b.length && a.entries.every((MapEntry<Object?, Object?> entry) =>
-        (b as Map<Object?, Object?>).containsKey(entry.key) &&
-        _deepEquals(entry.value, b[entry.key]));
+    return a.length == b.length &&
+        a.entries.every((MapEntry<Object?, Object?> entry) =>
+            (b as Map<Object?, Object?>).containsKey(entry.key) &&
+            _deepEquals(entry.value, b[entry.key]));
   }
   return a == b;
 }
-
 
 enum BrandingTypeMessage {
   light,
@@ -56,7 +57,8 @@ class ConfigurationMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static ConfigurationMessage decode(Object result) {
     result as List<Object?>;
@@ -81,8 +83,7 @@ class ConfigurationMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class UserMessage {
@@ -111,7 +112,8 @@ class UserMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static UserMessage decode(Object result) {
     result as List<Object?>;
@@ -137,8 +139,7 @@ class UserMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class AvatarThemeMessage {
@@ -163,7 +164,8 @@ class AvatarThemeMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static AvatarThemeMessage decode(Object result) {
     result as List<Object?>;
@@ -188,8 +190,7 @@ class AvatarThemeMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class MessageAreaThemeMessage {
@@ -234,7 +235,8 @@ class MessageAreaThemeMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static MessageAreaThemeMessage decode(Object result) {
     result as List<Object?>;
@@ -264,8 +266,7 @@ class MessageAreaThemeMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class ChatAreaThemeMessage {
@@ -354,7 +355,8 @@ class ChatAreaThemeMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static ChatAreaThemeMessage decode(Object result) {
     result as List<Object?>;
@@ -395,8 +397,7 @@ class ChatAreaThemeMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class PreChatThemeMessage {
@@ -429,7 +430,8 @@ class PreChatThemeMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static PreChatThemeMessage decode(Object result) {
     result as List<Object?>;
@@ -456,8 +458,7 @@ class PreChatThemeMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class ToolbarAreaThemeMessage {
@@ -486,7 +487,8 @@ class ToolbarAreaThemeMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static ToolbarAreaThemeMessage decode(Object result) {
     result as List<Object?>;
@@ -512,8 +514,7 @@ class ToolbarAreaThemeMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
 
 class ThemeMessage {
@@ -550,7 +551,8 @@ class ThemeMessage {
   }
 
   Object encode() {
-    return _toList();  }
+    return _toList();
+  }
 
   static ThemeMessage decode(Object result) {
     result as List<Object?>;
@@ -578,10 +580,8 @@ class ThemeMessage {
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
+  int get hashCode => Object.hashAll(_toList());
 }
-
 
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
@@ -590,31 +590,31 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is BrandingTypeMessage) {
+    } else if (value is BrandingTypeMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.index);
-    }    else if (value is ConfigurationMessage) {
+    } else if (value is ConfigurationMessage) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
-    }    else if (value is UserMessage) {
+    } else if (value is UserMessage) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
-    }    else if (value is AvatarThemeMessage) {
+    } else if (value is AvatarThemeMessage) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    }    else if (value is MessageAreaThemeMessage) {
+    } else if (value is MessageAreaThemeMessage) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
-    }    else if (value is ChatAreaThemeMessage) {
+    } else if (value is ChatAreaThemeMessage) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
-    }    else if (value is PreChatThemeMessage) {
+    } else if (value is PreChatThemeMessage) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
-    }    else if (value is ToolbarAreaThemeMessage) {
+    } else if (value is ToolbarAreaThemeMessage) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
-    }    else if (value is ThemeMessage) {
+    } else if (value is ThemeMessage) {
       buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else {
@@ -625,24 +625,24 @@ class _PigeonCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 129: 
+      case 129:
         final int? value = readValue(buffer) as int?;
         return value == null ? null : BrandingTypeMessage.values[value];
-      case 130: 
+      case 130:
         return ConfigurationMessage.decode(readValue(buffer)!);
-      case 131: 
+      case 131:
         return UserMessage.decode(readValue(buffer)!);
-      case 132: 
+      case 132:
         return AvatarThemeMessage.decode(readValue(buffer)!);
-      case 133: 
+      case 133:
         return MessageAreaThemeMessage.decode(readValue(buffer)!);
-      case 134: 
+      case 134:
         return ChatAreaThemeMessage.decode(readValue(buffer)!);
-      case 135: 
+      case 135:
         return PreChatThemeMessage.decode(readValue(buffer)!);
-      case 136: 
+      case 136:
         return ToolbarAreaThemeMessage.decode(readValue(buffer)!);
-      case 137: 
+      case 137:
         return ThemeMessage.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -654,23 +654,32 @@ class FlutterHelpCrunchApi {
   /// Constructor for [FlutterHelpCrunchApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  FlutterHelpCrunchApi({BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
+  FlutterHelpCrunchApi(
+      {BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
       : pigeonVar_binaryMessenger = binaryMessenger,
-        pigeonVar_messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
+        pigeonVar_messageChannelSuffix =
+            messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
   final BinaryMessenger? pigeonVar_binaryMessenger;
 
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
 
   final String pigeonVar_messageChannelSuffix;
 
-  Future<void> initialize({required ConfigurationMessage configuration, required UserMessage user, ThemeMessage? theme, }) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.initialize$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+  Future<void> initialize({
+    required ConfigurationMessage configuration,
+    required UserMessage user,
+    ThemeMessage? theme,
+  }) async {
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.initialize$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[configuration, user, theme]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[configuration, user, theme]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -687,13 +696,16 @@ class FlutterHelpCrunchApi {
   }
 
   Future<void> updateUser({required UserMessage user}) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.updateUser$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.updateUser$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[user]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -710,8 +722,10 @@ class FlutterHelpCrunchApi {
   }
 
   Future<bool> showChatScreen() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.showChatScreen$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.showChatScreen$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
@@ -737,14 +751,18 @@ class FlutterHelpCrunchApi {
     }
   }
 
-  Future<void> sendMessage({required String message, required bool isForceNewChat}) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.sendMessage$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+  Future<void> sendMessage(
+      {required String message, required bool isForceNewChat}) async {
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.sendMessage$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[message, isForceNewChat]);
+    final Future<Object?> pigeonVar_sendFuture =
+        pigeonVar_channel.send(<Object?>[message, isForceNewChat]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -761,8 +779,10 @@ class FlutterHelpCrunchApi {
   }
 
   Future<void> logout() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.logout$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_help_crunch.FlutterHelpCrunchApi.logout$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,

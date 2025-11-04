@@ -1,6 +1,6 @@
 name: flutter_help_crunch
 description: "FlutterHelpCrunch — a modern customer messaging platform — into your Flutter applications"
-version: 1.0.0
+version: 1.0.0+1
 homepage: https://github.com/pxdrgn/flutter_help_crunch
 repository: https://github.com/pxdrgn/flutter_help_crunch
 
@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  pigeon: ^25.3.2
-  plugin_platform_interface: ^2.0.2
+  pigeon: ^26.0.2
+  plugin_platform_interface: ^2.1.8
 
 dev_dependencies:
   flutter_test:
