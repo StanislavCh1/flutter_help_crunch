@@ -33,6 +33,26 @@ flutter pub get
 
 ---
 
+## 🤖 Android Setup (Required)
+
+### HelpCrunch depends on libraries distributed through JitPack, so you must add the JitPack repository to your project-level Gradle file.
+
+Open:
+android/build.gradle (NOT the one inside app/)
+
+Update the allprojects section:
+
+``` gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' } // Required for HelpCrunch
+    }
+}
+```
+
+
 ## 🧰 Usage
 
 ### 1️⃣ Import the package
