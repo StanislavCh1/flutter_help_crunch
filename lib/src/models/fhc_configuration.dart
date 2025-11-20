@@ -275,7 +275,7 @@ class FHCToolbarAreaTheme {
 /// for various areas of the HelpCrunch chat interface.
 class FHCTheme {
   /// The main accent color used across HelpCrunch UI components.
-  final int primaryColor;
+  final int? primaryColor;
 
   /// Customizations for the toolbar area.
   final FHCToolbarAreaTheme? toolbarAreaTheme;
@@ -293,7 +293,7 @@ class FHCTheme {
   final FHCAvatarTheme? avatarTheme;
 
   const FHCTheme({
-    required this.primaryColor,
+    this.primaryColor,
     this.toolbarAreaTheme,
     this.chatAreaTheme,
     this.messageAreaTheme,
@@ -309,6 +309,7 @@ class FHCTheme {
       chatAreaTheme: chatAreaTheme?.toMessage(),
       messageAreaTheme: messageAreaTheme?.toMessage(),
       preChatTheme: preChatTheme?.toMessage(),
+      avatarTheme: avatarTheme?.toMessage(),
     );
   }
 }

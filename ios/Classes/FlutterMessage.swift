@@ -466,7 +466,7 @@ struct ToolbarAreaThemeMessage: Hashable {
 
 /// Generated class from Pigeon that represents data sent in messages.
 struct ThemeMessage: Hashable {
-  var primaryColor: Int64
+  var primaryColor: Int64? = nil
   var toolbarAreaTheme: ToolbarAreaThemeMessage? = nil
   var chatAreaTheme: ChatAreaThemeMessage? = nil
   var messageAreaTheme: MessageAreaThemeMessage? = nil
@@ -476,7 +476,7 @@ struct ThemeMessage: Hashable {
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> ThemeMessage? {
-    let primaryColor = pigeonVar_list[0] as! Int64
+    let primaryColor: Int64? = nilOrValue(pigeonVar_list[0])
     let toolbarAreaTheme: ToolbarAreaThemeMessage? = nilOrValue(pigeonVar_list[1])
     let chatAreaTheme: ChatAreaThemeMessage? = nilOrValue(pigeonVar_list[2])
     let messageAreaTheme: MessageAreaThemeMessage? = nilOrValue(pigeonVar_list[3])

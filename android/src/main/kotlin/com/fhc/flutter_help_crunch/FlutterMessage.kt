@@ -403,7 +403,7 @@ data class ToolbarAreaThemeMessage (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class ThemeMessage (
-  val primaryColor: Long,
+  val primaryColor: Long? = null,
   val toolbarAreaTheme: ToolbarAreaThemeMessage? = null,
   val chatAreaTheme: ChatAreaThemeMessage? = null,
   val messageAreaTheme: MessageAreaThemeMessage? = null,
@@ -413,7 +413,7 @@ data class ThemeMessage (
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): ThemeMessage {
-      val primaryColor = pigeonVar_list[0] as Long
+      val primaryColor = pigeonVar_list[0] as Long?
       val toolbarAreaTheme = pigeonVar_list[1] as ToolbarAreaThemeMessage?
       val chatAreaTheme = pigeonVar_list[2] as ChatAreaThemeMessage?
       val messageAreaTheme = pigeonVar_list[3] as MessageAreaThemeMessage?

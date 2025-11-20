@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -80,7 +82,7 @@ class _MyAppState extends State<MyApp> {
         messageAreaTheme: messageAreaTheme,
         toolbarAreaTheme: toolbarAreaTheme,
         preChatTheme: preChatTheme,
-        primaryColor: 0xFFFFA635);
+        primaryColor: Platform.isIOS ? 0xFFFFA635 : null);
   }
 
   Future<void> initHelpCrunch() async {

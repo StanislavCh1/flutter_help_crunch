@@ -158,14 +158,14 @@ class ToolbarAreaThemeMessage {
 }
 
 class ThemeMessage {
-  final int primaryColor;
+  final int? primaryColor;
   final ToolbarAreaThemeMessage? toolbarAreaTheme;
   final ChatAreaThemeMessage? chatAreaTheme;
   final MessageAreaThemeMessage? messageAreaTheme;
   final PreChatThemeMessage? preChatTheme;
   final AvatarThemeMessage? avatarTheme;
   const ThemeMessage({
-    required this.primaryColor,
+    this.primaryColor,
     this.toolbarAreaTheme,
     this.chatAreaTheme,
     this.messageAreaTheme,

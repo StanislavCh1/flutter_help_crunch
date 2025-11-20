@@ -88,9 +88,11 @@ public class FlutterHelpCrunchPlugin: NSObject, FlutterPlugin, FlutterHelpCrunch
         if theme.chatAreaTheme?.brandingType == BrandingTypeMessage.light {
             hcTheme = HelpCrunch.lightTheme()
         }
-        hcTheme.mainColor = UIColor(argb: UInt32(theme.primaryColor))
-        
-        hcTheme.sendMessageArea.sendButtonColor = UIColor(argb: UInt32(theme.primaryColor))
+        if let primaryColor = theme.primaryColor {
+            let color = UIColor(argb: UInt32(primaryColor))
+            hcTheme.mainColor = color
+            hcTheme.sendMessageArea.sendButtonColor = color
+        }
         
         if let bgColor = theme.messageAreaTheme?.backgroundColor {
             hcTheme.chats.backgroundColor = UIColor(argb: UInt32(bgColor))

@@ -518,7 +518,7 @@ class ToolbarAreaThemeMessage {
 
 class ThemeMessage {
   ThemeMessage({
-    required this.primaryColor,
+    this.primaryColor,
     this.toolbarAreaTheme,
     this.chatAreaTheme,
     this.messageAreaTheme,
@@ -526,7 +526,7 @@ class ThemeMessage {
     this.avatarTheme,
   });
 
-  int primaryColor;
+  int? primaryColor;
 
   ToolbarAreaThemeMessage? toolbarAreaTheme;
 
@@ -555,7 +555,7 @@ class ThemeMessage {
   static ThemeMessage decode(Object result) {
     result as List<Object?>;
     return ThemeMessage(
-      primaryColor: result[0]! as int,
+      primaryColor: result[0] as int?,
       toolbarAreaTheme: result[1] as ToolbarAreaThemeMessage?,
       chatAreaTheme: result[2] as ChatAreaThemeMessage?,
       messageAreaTheme: result[3] as MessageAreaThemeMessage?,
