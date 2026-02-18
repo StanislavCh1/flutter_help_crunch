@@ -22,6 +22,9 @@ class FlutterHelpCrunchPlugin : FlutterPlugin, FlutterHelpCrunchApi {
   companion object {
     const val TAG = "FlutterHelpCrunchPlugin"
   }
+
+  private var currentOptions: HCOptions? = null
+
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     FlutterHelpCrunchApi.setUp(flutterPluginBinding.binaryMessenger, this)
   }
@@ -46,8 +49,6 @@ class FlutterHelpCrunchPlugin : FlutterPlugin, FlutterHelpCrunchApi {
     val preChatTheme = HCPreChatTheme.Builder().applyFromTheme(theme).build()
     val toolbarAreaTheme = HCToolbarAreaTheme.Builder().applyFromTheme(theme).build()
 
-    var options: HCOptions? = null
-
     if (theme != null) {
       val hcThemeBuilder =
               theme.primaryColor?.let { HCTheme.Builder(it.toInt()) } ?: HCTheme.Builder()
@@ -59,14 +60,20 @@ class FlutterHelpCrunchPlugin : FlutterPlugin, FlutterHelpCrunchApi {
                       .setChatAreaTheme(messageChatAreaTheme)
                       .setPreChatTheme(preChatTheme)
                       .build()
-      options = HCOptions.Builder().setTheme(hcTheme).build()
+      currentOptions = HCOptions.Builder().setTheme(hcTheme).build()
+    } else {
+      currentOptions = null
+    }
+
+    if (HelpCrunch.isInitialized()) {
+      return
     }
 
     HelpCrunch.initialize(
             configuration.organization,
             configuration.applicationId.toInt(),
             configuration.applicationSecret,
-            options = options,
+            options = currentOptions,
             user = hcUser.build()
     )
   }
@@ -84,7 +91,7 @@ class FlutterHelpCrunchPlugin : FlutterPlugin, FlutterHelpCrunchApi {
   override fun showChatScreen(): Boolean {
     var flutterResult: Boolean = false
     HelpCrunch.showChatScreen(
-            null,
+            currentOptions,
             object : Callback<Any?>() {
               override fun onSuccess(result: Any?) {
                 Log.i(TAG, "onSuccess::showChatScreen")

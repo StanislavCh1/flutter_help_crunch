@@ -44,6 +44,9 @@ fun HCMessageAreaTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCMessageAr
     messageArea.messageMenuIconColor
         ?.let { setMessageMenuIconColor(it.toInt()) }
 
+    messageArea.navigationBarColor
+        ?.let { setNavigationBarColor(it.toInt()) }
+
     return this
 }
 
@@ -94,7 +97,28 @@ fun HCChatAreaTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCChatAreaThem
     chatArea.progressViewsColor
         ?.let { setProgressViewsColor(it.toInt()) }
     chatArea.chatBackgroundColor
-        ?.let { setBackgroundColor(it.toInt()) }
+        ?.let { setAdditionalMessagesBackgroundColor(it.toInt()) }
+
+    chatArea.incomingBubbleLinkColor
+        ?.let { setIncomingBubbleLinkColor(it.toInt()) }
+    chatArea.outcomingBubbleLinkColor
+        ?.let { setOutcomingBubbleLinkColor(it.toInt()) }
+    chatArea.attachmentIconsColor
+        ?.let { setAttachmentIconsColor(it.toInt()) }
+    chatArea.incomingFileBackgroundColor
+        ?.let { setIncomingFileBackgroundColor(it.toInt()) }
+    chatArea.outcomingFileBackgroundColor
+        ?.let { setOutcomingFileBackgroundColor(it.toInt()) }
+    chatArea.incomingFileIconColor
+        ?.let { setIncomingFileIconColor(it.toInt()) }
+    chatArea.outcomingFileIconColor
+        ?.let { setOutcomingFileIconColor(it.toInt()) }
+    chatArea.fabDownBackgroundColor
+        ?.let { setFabDownBackgroundColor(it.toInt()) }
+    chatArea.fabBatchBackgroundColor
+        ?.let { setFabBatchBackgroundColor(it.toInt()) }
+    chatArea.fabBatchTextColor
+        ?.let { setFabBatchTextColor(it.toInt()) }
 
     // If HCChatAreaTheme.Builder supports branding type
 
@@ -143,6 +167,9 @@ fun HCPreChatTheme.Builder.applyFromTheme(theme: ThemeMessage?): HCPreChatTheme.
 
     preChatTheme.messageTextColor
         ?.let { setMessageTextColor(it.toInt()) }
+
+    preChatTheme.gdprLinkTextColor
+        ?.let { setGdprLinkTextColor(it.toInt()) }
 
     return this
 }

@@ -15,6 +15,7 @@ public class FlutterHelpCrunchPlugin: NSObject, FlutterPlugin, FlutterHelpCrunch
         
         let hcUser = HCSUser()
         hcUser.userId = user.id
+        hcUser.name = user.name
         hcUser.email = user.email
         hcUser.phone = user.phone
         bindTheme(theme: theme)
@@ -24,6 +25,7 @@ public class FlutterHelpCrunchPlugin: NSObject, FlutterPlugin, FlutterHelpCrunch
     func updateUser(user: UserMessage) throws {
         let hcUser = HCSUser()
         hcUser.userId = user.id
+        hcUser.name = user.name
         hcUser.email = user.email
         hcUser.phone = user.phone
         HelpCrunchSDK.HelpCrunch.update(hcUser)
@@ -118,11 +120,45 @@ public class FlutterHelpCrunchPlugin: NSObject, FlutterPlugin, FlutterHelpCrunch
         if let timeTextColor = theme.chatAreaTheme?.timeTextColor {
                 hcTheme.chatArea.messageTimeColor = UIColor(argb: UInt32(timeTextColor))
         }
-        
-        hcTheme.chatArea.messageOutgoingLinksColor = UIColor.blue
-        
-        ///
-
+        if let authorNameColor = theme.chatAreaTheme?.authorNameColor {
+            hcTheme.chatArea.messageIncomingAgentNameFontColor = UIColor(argb: UInt32(authorNameColor))
+        }
+        if let systemMessageColor = theme.chatAreaTheme?.systemMessageColor {
+            hcTheme.chatArea.dateColor = UIColor(argb: UInt32(systemMessageColor))
+        }
+        if let progressViewsColor = theme.chatAreaTheme?.progressViewsColor {
+            hcTheme.chatArea.waitingMessageActivityIndicatorColor = UIColor(argb: UInt32(progressViewsColor))
+        }
+        if let incomingCodeBg = theme.chatAreaTheme?.incomingCodeBackgroundColor {
+            hcTheme.chatArea.messageIncomingCodeBackgroundColor = UIColor(argb: UInt32(incomingCodeBg))
+        }
+        if let outcomingCodeBg = theme.chatAreaTheme?.outcomingCodeBackgroundColor {
+            hcTheme.chatArea.messageOutgoingCodeBackgroundColor = UIColor(argb: UInt32(outcomingCodeBg))
+        }
+        if let incomingCodeText = theme.chatAreaTheme?.incomingCodeTextColor {
+            hcTheme.chatArea.messageIncomingCodeFontColor = UIColor(argb: UInt32(incomingCodeText))
+        }
+        if let outcomingCodeText = theme.chatAreaTheme?.outcomingCodeTextColor {
+            hcTheme.chatArea.messageOutgoingCodeFontColor = UIColor(argb: UInt32(outcomingCodeText))
+        }
+        if let incomingBlockQuote = theme.chatAreaTheme?.incomingBlockQuoteColor {
+            hcTheme.chatArea.messageIncomingQuoteLineColor = UIColor(argb: UInt32(incomingBlockQuote))
+        }
+        if let outcomingBlockQuote = theme.chatAreaTheme?.outcomingBlockQuoteColor {
+            hcTheme.chatArea.messageOutgoingQuoteLineColor = UIColor(argb: UInt32(outcomingBlockQuote))
+        }
+        if let incomingFileColor = theme.chatAreaTheme?.incomingFileTextColor {
+            hcTheme.chatArea.messageIncomingFileColor = UIColor(argb: UInt32(incomingFileColor))
+        }
+        if let outcomingFileColor = theme.chatAreaTheme?.outcomingFileTextColor {
+            hcTheme.chatArea.messageOutgoingFileColor = UIColor(argb: UInt32(outcomingFileColor))
+        }
+        if let incomingLinkColor = theme.chatAreaTheme?.incomingBubbleLinkColor {
+            hcTheme.chatArea.messageIncomingLinksColor = UIColor(argb: UInt32(incomingLinkColor))
+        }
+        if let outcomingLinkColor = theme.chatAreaTheme?.outcomingBubbleLinkColor {
+            hcTheme.chatArea.messageOutgoingLinksColor = UIColor(argb: UInt32(outcomingLinkColor))
+        }
 
         // MARK: - Send Message Area
         if let sendMessageAreaBgColor = theme.messageAreaTheme?.backgroundColor {
@@ -142,13 +178,17 @@ public class FlutterHelpCrunchPlugin: NSObject, FlutterPlugin, FlutterHelpCrunch
         if let preChatThemeBgColor = theme.preChatTheme?.backgroundColor {
             hcTheme.prechatForm.backgroundColor = UIColor(argb: UInt32(preChatThemeBgColor))
         }
-        
         if let preChatMessageBackgroundColor = theme.preChatTheme?.messageBackgroundColor {
             hcTheme.prechatForm.topMessageBackgroundColor = UIColor(argb: UInt32(preChatMessageBackgroundColor))
         }
-        
         if let preChatMessageTextColor = theme.preChatTheme?.messageTextColor {
             hcTheme.prechatForm.topMessageFontColor = UIColor(argb: UInt32(preChatMessageTextColor))
+        }
+        if let preChatInputTextColor = theme.preChatTheme?.inputFieldTextColor {
+            hcTheme.prechatForm.textFieldFontColor = UIColor(argb: UInt32(preChatInputTextColor))
+        }
+        if let preChatInputHintColor = theme.preChatTheme?.inputFieldTextHintColor {
+            hcTheme.prechatForm.textFieldPlaceholderColor = UIColor(argb: UInt32(preChatInputHintColor))
         }
         
         
@@ -159,6 +199,9 @@ public class FlutterHelpCrunchPlugin: NSObject, FlutterPlugin, FlutterHelpCrunch
         
         if let navigationBgColor = theme.toolbarAreaTheme?.backgroundColor {
             hcTheme.navigationBar.backgroundColor = UIColor(argb: UInt32(navigationBgColor))
+        }
+        if let outlineColor = theme.toolbarAreaTheme?.outlineColor {
+            hcTheme.navigationBar.bottomLineColor = UIColor(argb: UInt32(outlineColor))
         }
         
         HelpCrunch.bindTheme(hcTheme)

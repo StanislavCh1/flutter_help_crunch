@@ -68,6 +68,7 @@ class MessageAreaThemeMessage {
   final int? messageMenuTextColor;
   final int? messageMenuSummaryTextColor;
   final int? messageMenuIconColor;
+  final int? navigationBarColor;
 
   MessageAreaThemeMessage({
     this.backgroundColor,
@@ -78,6 +79,7 @@ class MessageAreaThemeMessage {
     this.messageMenuTextColor,
     this.messageMenuSummaryTextColor,
     this.messageMenuIconColor,
+    this.navigationBarColor,
   });
 }
 // ---------------------------------------------------------------
@@ -102,6 +104,16 @@ class ChatAreaThemeMessage {
   final int? timeTextColor;
   final int? progressViewsColor;
   final int? chatBackgroundColor;
+  final int? incomingBubbleLinkColor;
+  final int? outcomingBubbleLinkColor;
+  final int? attachmentIconsColor;
+  final int? incomingFileBackgroundColor;
+  final int? outcomingFileBackgroundColor;
+  final int? incomingFileIconColor;
+  final int? outcomingFileIconColor;
+  final int? fabDownBackgroundColor;
+  final int? fabBatchBackgroundColor;
+  final int? fabBatchTextColor;
   ChatAreaThemeMessage({
     this.incomingBubbleTextColor,
     this.outcomingBubbleTextColor,
@@ -122,6 +134,16 @@ class ChatAreaThemeMessage {
     this.timeTextColor,
     this.progressViewsColor,
     this.chatBackgroundColor,
+    this.incomingBubbleLinkColor,
+    this.outcomingBubbleLinkColor,
+    this.attachmentIconsColor,
+    this.incomingFileBackgroundColor,
+    this.outcomingFileBackgroundColor,
+    this.incomingFileIconColor,
+    this.outcomingFileIconColor,
+    this.fabDownBackgroundColor,
+    this.fabBatchBackgroundColor,
+    this.fabBatchTextColor,
   });
 }
 
@@ -132,6 +154,7 @@ class PreChatThemeMessage {
   final int? backgroundColor;
   final int? messageBackgroundColor;
   final int? messageTextColor;
+  final int? gdprLinkTextColor;
 
   const PreChatThemeMessage({
     this.inputFieldTextColor,
@@ -139,6 +162,7 @@ class PreChatThemeMessage {
     this.backgroundColor,
     this.messageBackgroundColor,
     this.messageTextColor,
+    this.gdprLinkTextColor,
   });
 }
 

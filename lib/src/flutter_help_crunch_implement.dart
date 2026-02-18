@@ -9,7 +9,7 @@ class FlutterHelpCrunchImplement implements FlutterHelpCrunchPlatform {
       {required FHCConfiguration configuration,
       required FHCUser user,
       FHCTheme? theme}) async {
-    _api.initialize(
+    await _api.initialize(
         configuration: configuration.toMessage(),
         user: user.toMessage(),
         theme: theme?.toMessage());
@@ -17,13 +17,13 @@ class FlutterHelpCrunchImplement implements FlutterHelpCrunchPlatform {
 
   @override
   Future<void> logout() async {
-    _api.logout();
+    await _api.logout();
   }
 
   @override
   Future<void> sendMessage(
       {required String message, required bool isForceNewChat}) async {
-    _api.sendMessage(message: message, isForceNewChat: isForceNewChat);
+    await _api.sendMessage(message: message, isForceNewChat: isForceNewChat);
   }
 
   @override
@@ -33,6 +33,6 @@ class FlutterHelpCrunchImplement implements FlutterHelpCrunchPlatform {
 
   @override
   Future<void> updateUser({required FHCUser user}) async {
-    _api.updateUser(user: user.toMessage());
+    await _api.updateUser(user: user.toMessage());
   }
 }

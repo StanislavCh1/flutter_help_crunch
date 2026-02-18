@@ -114,6 +114,9 @@ class FHCMessageAreaTheme {
   final int? messageMenuSummaryTextColor;
   final int? messageMenuIconColor;
 
+  /// Android only: color of the navigation bar inside the message area.
+  final int? navigationBarColor;
+
   FHCMessageAreaTheme({
     this.backgroundColor,
     this.inputOutlineColor,
@@ -123,6 +126,7 @@ class FHCMessageAreaTheme {
     this.messageMenuTextColor,
     this.messageMenuSummaryTextColor,
     this.messageMenuIconColor,
+    this.navigationBarColor,
   });
 
   /// Converts this message area theme to a platform message format.
@@ -137,6 +141,7 @@ class FHCMessageAreaTheme {
       messageMenuTextColor: messageMenuTextColor,
       messageMenuSummaryTextColor: messageMenuSummaryTextColor,
       messageMenuIconColor: messageMenuIconColor,
+      navigationBarColor: navigationBarColor,
     );
   }
 }
@@ -162,7 +167,40 @@ class FHCChatAreaTheme {
   final int? systemMessageColor;
   final int? timeTextColor;
   final int? progressViewsColor;
+
+  /// Background color for additional/system messages area.
   final int? chatBackgroundColor;
+
+  /// Color of links in incoming bubbles.
+  final int? incomingBubbleLinkColor;
+
+  /// Color of links in outcoming bubbles.
+  final int? outcomingBubbleLinkColor;
+
+  /// Android only: color of attachment icons.
+  final int? attachmentIconsColor;
+
+  /// Android only: background color of file previews in incoming messages.
+  final int? incomingFileBackgroundColor;
+
+  /// Android only: background color of file previews in outcoming messages.
+  final int? outcomingFileBackgroundColor;
+
+  /// Android only: icon color inside file previews in incoming messages.
+  final int? incomingFileIconColor;
+
+  /// Android only: icon color inside file previews in outcoming messages.
+  final int? outcomingFileIconColor;
+
+  /// Android only: background color of the scroll-down FAB button.
+  final int? fabDownBackgroundColor;
+
+  /// Android only: background color of the unread-count badge on the FAB.
+  final int? fabBatchBackgroundColor;
+
+  /// Android only: text color of the unread-count badge on the FAB.
+  final int? fabBatchTextColor;
+
   FHCChatAreaTheme({
     this.incomingBubbleTextColor,
     this.outcomingBubbleTextColor,
@@ -183,6 +221,16 @@ class FHCChatAreaTheme {
     this.timeTextColor,
     this.progressViewsColor,
     this.chatBackgroundColor,
+    this.incomingBubbleLinkColor,
+    this.outcomingBubbleLinkColor,
+    this.attachmentIconsColor,
+    this.incomingFileBackgroundColor,
+    this.outcomingFileBackgroundColor,
+    this.incomingFileIconColor,
+    this.outcomingFileIconColor,
+    this.fabDownBackgroundColor,
+    this.fabBatchBackgroundColor,
+    this.fabBatchTextColor,
   });
 
   /// Converts this chat area theme to a platform message format.
@@ -210,6 +258,16 @@ class FHCChatAreaTheme {
       timeTextColor: timeTextColor,
       progressViewsColor: progressViewsColor,
       chatBackgroundColor: chatBackgroundColor,
+      incomingBubbleLinkColor: incomingBubbleLinkColor,
+      outcomingBubbleLinkColor: outcomingBubbleLinkColor,
+      attachmentIconsColor: attachmentIconsColor,
+      incomingFileBackgroundColor: incomingFileBackgroundColor,
+      outcomingFileBackgroundColor: outcomingFileBackgroundColor,
+      incomingFileIconColor: incomingFileIconColor,
+      outcomingFileIconColor: outcomingFileIconColor,
+      fabDownBackgroundColor: fabDownBackgroundColor,
+      fabBatchBackgroundColor: fabBatchBackgroundColor,
+      fabBatchTextColor: fabBatchTextColor,
     );
   }
 }
@@ -222,12 +280,16 @@ class FHCPreChatTheme {
   final int? messageBackgroundColor;
   final int? messageTextColor;
 
+  /// Android only: color of the GDPR link text in the pre-chat form.
+  final int? gdprLinkTextColor;
+
   const FHCPreChatTheme({
     this.inputFieldTextColor,
     this.inputFieldTextHintColor,
     this.backgroundColor,
     this.messageBackgroundColor,
     this.messageTextColor,
+    this.gdprLinkTextColor,
   });
 
   /// Converts this pre-chat theme to a platform message format.
@@ -239,6 +301,7 @@ class FHCPreChatTheme {
       backgroundColor: backgroundColor,
       messageBackgroundColor: messageBackgroundColor,
       messageTextColor: messageTextColor,
+      gdprLinkTextColor: gdprLinkTextColor,
     );
   }
 }
